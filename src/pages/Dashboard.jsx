@@ -17,8 +17,6 @@ const Dashboard = () => {
     const tabFromURL = urlParams.get("tab")
 
     tabFromURL && setTab(tabFromURL)
-
-    //okay
   })
 
 
