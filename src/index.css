@@ -40,3 +40,45 @@ body {
 .sidebar-list > li {
     cursor: pointer;
 }
+
+.even-row {
+    background-color: #F5F8FA;
+}
+  
+.MuiPaginationItem-root.Mui-selected {
+    background-color: #00457C !important;
+    color: white !important; /* Optional */
+}
+
+.MuiPaper-root {
+    box-shadow: none !important;
+}
+
+.css-8uzxat-MuiSvgIcon-root-MuiPaginationItem-icon {
+    fill: #00457C !important;
+}
+
+
+.p-dropdown,
+.p-calendar,
+.p-inputnumber {
+    border: 1px solid #E1E1E1;
+    padding: 5px 10px !important;
+    border-radius: 3px;
+}
+
+.p-dropdown-open {
+    background-color: white !important;
+}
+
+.p-placeholder {
+    font-family: Inter-Regular;
+    color: #848484;
+    font-size: 14px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

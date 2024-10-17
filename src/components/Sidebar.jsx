@@ -103,7 +103,7 @@ const Sidebar = () => {
           </li>              
 
           <Link to='/dashboard?tab=task-management'>
-            <li className={`w-full flex items-center justify-between cursor-pointer ${tab === 'task-management' && 'text-white'} `} >
+            <li className={`w-full flex items-center justify-between cursor-pointer ${(tab === 'task-management' || tab === 'create-task' ) && 'text-white'} `} >
               <div className="flex items-center gap-2">
                 <BiSolidDetail size={20} />
                 <h3>Task Management</h3>
