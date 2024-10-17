@@ -59,7 +59,7 @@ body {
 }
 
 
-.p-dropdown,
+/* .p-dropdown,
 .p-calendar,
 .p-inputnumber {
     border: 1px solid #E1E1E1;
@@ -69,9 +69,11 @@ body {
 
 .p-dropdown-open {
     background-color: white !important;
-}
+} */
 
-.p-placeholder {
+.p-placeholder,
+.p-inputtext::placeholder,
+.p-inputnumber::placeholder {
     font-family: Inter-Regular;
     color: #848484;
     font-size: 14px;
@@ -82,3 +84,81 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+.p-dropdown-items-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.p-dropdown, 
+.p-calendar,
+.p-inputnumber {
+    padding: 7px;
+    border-radius: 3px;
+    border: 2px solid rgba(225, 225, 225, 1);
+    font-family: Inter-Regular;
+    font-size: 14px;
+    color: rgba(21, 21, 41, 1);
+  }
+  
+  .p-dropdown.p-inputwrapper-focus,
+  .p-calendar.p-focus {
+    border: 2px solid rgba(0, 69, 124, 1) !important;
+  }
+  
+  .p-dropdown-panel,
+  .p-datepicker-group-container {
+    background-color: white;
+    box-shadow: 0 4px 25px 0 rgba(123, 123, 123, 0.25);
+    border: 1px solid rgba(225, 225, 225, 1);
+  }
+    
+  .p-dropdown-item {
+    padding: 7px;
+    font-family: Inter-Regular;
+    font-size: 14px;
+    color: rgba(62, 62, 62, 1);
+    &:hover,
+    &.p-highlight {
+      background-color: rgba(0, 140, 255, 0.030);
+    }
+  }
+
+  .p-datepicker-group-container {
+    margin-top: 9px;
+  }
+
+  .p-datepicker-header {
+    padding: 7px 0px;
+  }
+
+  .p-datepicker-calendar > thead > tr > th > span,
+  .p-datepicker-calendar > tbody > tr > td > span {
+    background-color: transparent;
+    &:hover{
+        background-color: rgba(0, 140, 255, 0.20);
+    }
+  }
+
+  .p-inputtext {
+    background-color: transparent;
+    /* padding: 0.5rem; */
+    cursor: pointer;
+    outline: none;
+    border: none;
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+  
+  .p-datepicker-today {
+    color: #F5F8FA;
+    background-color: rgba(0, 69, 124, 1);
+    border-radius: 50%;
+  }
+
+  .p-inputnumber {
+    max-width: 8rem;
+    font-size: 24px;
+  }

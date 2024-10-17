@@ -84,10 +84,21 @@ const CreateTask = () => {
                     <label htmlFor="task_type" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
                         Task Type
                     </label>
-                    <Dropdown
+                    {/* <Dropdown
                         value={selectedTask} onChange={(e) => setSelectedTask(e.value)} options={taskType} optionLabel="label" 
                         placeholder="Select Task Type" className="w-[70%] 2xl:w-[80%] "
+                    /> */}
+
+                    <Dropdown
+                        value={selectedTask}
+                        onChange={(e) => setSelectedTask(e.value)}
+                        options={taskType}
+                        optionLabel="label" 
+                        highlightOnSelect={true}
+                        placeholder="Choose an option"
+                        className="w-[70%] 2xl:w-[80%]" 
                     />
+
                 </div>
                 <div className="w-full flex items-center gap-2">
                     <label htmlFor="project" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
@@ -95,7 +106,7 @@ const CreateTask = () => {
                     </label>
                     <Dropdown
                         value={selectedProject} onChange={(e) => setSelectedProject(e.value)} options={projects} optionLabel="label" 
-                        placeholder="Select Project" className="w-[70%] 2xl:w-[80%] focus:border-[#00457C]"
+                        placeholder="Select Project" className="w-[70%] 2xl:w-[80%]"
                     />
                 </div>
                 <div className="w-full flex items-center gap-2">
@@ -111,15 +122,13 @@ const CreateTask = () => {
                     <label htmlFor="due-date" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
                         Due Date
                     </label>
-                    <Calendar placeholder="Select Due Date" value={date} onChange={(e) => setDate(e.value)} showIcon className="w-[70%] 2xl:w-[80%]"  />
+                    <Calendar placeholder="Select Due Date" dateFormat="dd-mm-yy" value={date} onChange={(e) => setDate(e.value)} showIcon className="w-[70%] 2xl:w-[80%]"  />
                 </div>
                 <div className="w-full flex items-center gap-2">
                     <label htmlFor="integer-only" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
                         Number of Tasks
                     </label>
-                    <InputNumber placeholder="Number of Tasks" inputId="integer-only" value={number} onValueChange={(e) => setValue1(e.value)}
-                        className="font-Inter-Regular text-2xl text-[#151529]"
-                    />
+                    <InputNumber placeholder="Number of tasks" inputId="integer-only" value={number} onValueChange={(e) => setValue1(e.value)} />
                 </div>
                 <div className="ml-[120px]">
                     <span className="flex items-center gap-1 font-Inter-Regular text-sm text-[#00457C] cursor-pointer">
@@ -150,7 +159,7 @@ const CreateTask = () => {
                     <h2 className="font-Inter-Regular text-sm text-[#3E3E3E]"> Resources </h2>
                     <h2 className="font-Inter-Regular text-sm text-[#3E3E3E]"> Task Division </h2>
                 </div>
-                <section className="py-3 px-2 w-full flex flex-col gap-3">
+                <section className="py-3 px-2 w-full flex flex-col gap-3 border-[#E2E2E2] border-x border-b rounded-b-md">
                     {users?.map((user) => (
                         <div key={user.id} className={`w-full flex justify-between ${user?.availability && 'bg-[#FEF9F6]'} `} >
                             <div className="flex gap-2">
