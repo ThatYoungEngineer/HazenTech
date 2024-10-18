@@ -1,5 +1,6 @@
-import randomTasks from '../assets/data/tasks.js';
-import * as React from 'react';
+import randomTasks from '../assets/data/tasks.js'
+
+import * as React from 'react'
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -10,11 +11,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import Pagination from '@mui/material/Pagination';
+import Pagination from '@mui/material/Pagination'
 
-import { FaRegTrashAlt } from 'react-icons/fa';
-import { BiSolidPencil } from 'react-icons/bi';
+import { FaRegTrashAlt } from 'react-icons/fa'
+import { BiSolidPencil } from 'react-icons/bi'
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -39,7 +39,7 @@ const headCells = [
   { id: 'client', numeric: false, disablePadding: false, label: 'Client' },
   { id: 'created_at', numeric: false, disablePadding: false, label: 'Created On' },
   { id: 'actions', numeric: false, disablePadding: false, label: 'Actions' },
-];
+]
 
 function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
@@ -115,7 +115,7 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{  maxHeight: '350px', overflowY: 'auto', border: 'none' }}>
+        <TableContainer sx={{  maxHeight: '325px', overflowY: 'auto', border: 'none' }}>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               order={order}
@@ -203,7 +203,7 @@ export default function EnhancedTable() {
           <section className='flex items-center gap-2 font-Roboto-Regular text-sm'>
             <button type='button' onClick={() => setRowsPerPage(5)} className={`p-3 rounded-md ${rowsPerPage == '5' ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent' }  cursor-pointer`}>5</button>
             <button type='button' onClick={() => setRowsPerPage(10)} className={`p-3 rounded-md ${rowsPerPage == '10' ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent' }  cursor-pointer`}> 10 </button>
-            <button type='button' onClick={() => setRowsPerPage(rows.length)} className={`p-3 rounded-md ${rowsPerPage == rows.length ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent' }  cursor-pointer`}> All </button>
+            <button type='button' onClick={() => { setRowsPerPage(rows.length); setPage(1); }} className={`p-3 rounded-md ${rowsPerPage === rows.length ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent'}`}>All</button>
           </section>
           <section>
             <Pagination

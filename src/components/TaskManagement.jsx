@@ -15,7 +15,7 @@ const TaskManagement = () => {
           </button>
         </Link>
       </div>
-      <section className="mt-5 w-full min-h-fit bg-white header-shadow rounded-md p-5  ">
+      <section className="mt-5 w-full min-h-fit bg-white header-shadow rounded-md p-5 ">
         <EnhancedTable />
       </section>
     </section>

@@ -7,6 +7,7 @@ import { useSidebar } from '../context/sidebarContext'
 import { useLocation } from 'react-router-dom'
 import TaskManagement from '../components/TaskManagement'
 import CreateTask from '../components/CreateTask'
+import AbsentResources from '../components/AbsentResources'
 
 const Dashboard = () => {
   const { openSidebar } = useSidebar()
@@ -40,6 +41,7 @@ const Dashboard = () => {
           <section className='h-full w-full'>
             {tab === 'task-management' && <TaskManagement />}
             {tab === 'create-task' && <CreateTask />}
+            {tab === 'absent-resources' && <AbsentResources />}
           </section>
           <Footer />
         </main>

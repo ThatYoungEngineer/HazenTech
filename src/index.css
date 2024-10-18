@@ -58,19 +58,6 @@ body {
     fill: #00457C !important;
 }
 
-
-/* .p-dropdown,
-.p-calendar,
-.p-inputnumber {
-    border: 1px solid #E1E1E1;
-    padding: 5px 10px !important;
-    border-radius: 3px;
-}
-
-.p-dropdown-open {
-    background-color: white !important;
-} */
-
 .p-placeholder,
 .p-inputtext::placeholder,
 .p-inputnumber::placeholder {
@@ -79,12 +66,15 @@ body {
     font-size: 14px;
 }
 
+body::-webkit-scrollbar {
+  display: none !important;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 .p-dropdown-items-wrapper::-webkit-scrollbar {
     display: none;
@@ -95,7 +85,7 @@ input::-webkit-inner-spin-button {
 .p-inputnumber {
     padding: 7px;
     border-radius: 3px;
-    border: 2px solid rgba(225, 225, 225, 1);
+    border: 2px solid rgba(225, 225, 225, .5);
     font-family: Inter-Regular;
     font-size: 14px;
     color: rgba(21, 21, 41, 1);
@@ -107,7 +97,10 @@ input::-webkit-inner-spin-button {
   }
   
   .p-dropdown-panel,
-  .p-datepicker-group-container {
+  .p-datepicker-group-container,
+  .p-monthpicker,
+  .p-yearpicker {
+    font-family: Inter-Regular;
     background-color: white;
     box-shadow: 0 4px 25px 0 rgba(123, 123, 123, 0.25);
     border: 1px solid rgba(225, 225, 225, 1);
@@ -124,8 +117,54 @@ input::-webkit-inner-spin-button {
     }
   }
 
+  .p-datepicker-group-container > .p-datepicker-group > .p-datepicker-calendar-container > .p-datepicker-calendar > tbody > tr > td > .p-highlight {
+    color: #F5F8FA;
+    border: 1px solid transparent;
+    background: rgba(5, 23, 59, 1) !important;
+    border-radius: 50%;
+    &:hover {
+      border-color: rgb(5, 23, 59);
+    }
+  }
+
+  .p-disabled {
+    display: none !important;
+  }
+
+  .p-icon {
+    color: #767676;
+  }
+
+  .p-datepicker-title {
+    font-family: Inter-Regular;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+
   .p-datepicker-group-container {
     margin-top: 9px;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .p-datepicker-group {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-datepicker-calendar {
+    margin-left: .65rem;
+  }
+  @media screen and (min-width: 1599px) {
+    .p-datepicker-calendar {
+      margin-left: 1.5rem;
+    }      
   }
 
   .p-datepicker-header {
@@ -134,16 +173,31 @@ input::-webkit-inner-spin-button {
 
   .p-datepicker-calendar > thead > tr > th > span,
   .p-datepicker-calendar > tbody > tr > td > span {
+    font-family: Inter-Regular;
     background-color: transparent;
+
+    height: 1.5rem !important;
+    width: 1.5rem !important;
+    
+    max-height: 1.5rem !important;
+    max-width: 1.5rem !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     &:hover{
-        background-color: rgba(0, 140, 255, 0.20);
+      background-color: rgba(0, 140, 255, 0.20);
     }
+  }
+
+  .p-monthpicker-month:hover,
+  .p-yearpicker-year:hover {
+    background-color: rgba(0, 140, 255, 0.20);
   }
 
   .p-inputtext {
     background-color: transparent;
-    /* padding: 0.5rem; */
-    cursor: pointer;
     outline: none;
     border: none;
     &:focus {
@@ -151,14 +205,23 @@ input::-webkit-inner-spin-button {
       border: none;
     }
   }
-  
-  .p-datepicker-today {
-    color: #F5F8FA;
-    background-color: rgba(0, 69, 124, 1);
-    border-radius: 50%;
+
+  .p-datepicker > td .p-datepicker-today {
+    background-color: rgba(0, 140, 255, 0.030);
+    border: 1px solid rgba(0, 140, 255, 0.25);
+    max-width: 1.5rem !important;
   }
 
   .p-inputnumber {
     max-width: 8rem;
     font-size: 24px;
   }
+
+#numberInput {
+  cursor: text !important;
+}
+
+
+.Mui-selected  {
+  background-color: transparent !important;;
+}

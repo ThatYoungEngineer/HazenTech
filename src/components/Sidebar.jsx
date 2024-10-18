@@ -12,7 +12,6 @@ import { Link } from "react-router-dom"
 
 
 const Sidebar = () => {
-    // const [active, setActive] = useState({dashboard: false, taskManagement: false})
     const [open, setOpen] = useState({dashboard: false, taskManagement: false})
     const [tab, setTab] = useState(null)
 
@@ -47,16 +46,16 @@ const Sidebar = () => {
               </div>              
 
               <ul
-                className={`sidebar-list flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.dashboard ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
+                className={`sidebar-list text-[13px] flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.dashboard ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
                 style={{
                   maxHeight: open.dashboard ? '160px' : '0',
                   transition: 'all 300ms ease-in-out',
                 }}
               >                    
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 1</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 2</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 3</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 4</li>
+                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Item 1</li>
+                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Item 2</li>
+                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Item 3</li>
+                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Item 4</li>
               </ul>            
 
             </div>
@@ -72,24 +71,27 @@ const Sidebar = () => {
                   taskManagement: !prevState.taskManagement
                 }))}
               >
-                <div className="flex items-center gap-2">
+                <div className={` flex items-center gap-2 ${(tab === 'absent-resources') && 'text-white'} `}>
                   <PiUserListFill size={20} />
                   <h3>Administration</h3>
                 </div>
-                <MdKeyboardArrowRight size={20} className={`${open.taskManagement && 'rotate-90'} transition-transform ease-in-out duration-300`} />
+                <MdKeyboardArrowRight size={20} className={`${open.taskManagement && 'rotate-90'} ${(tab === 'absent-resources') && 'text-white'} transition-transform ease-in-out duration-300`} />
               </div>
 
               <ul
-                className={`sidebar-list flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.taskManagement ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
+                className={`sidebar-list text-[13px] flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.taskManagement ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
                 style={{
-                  maxHeight: open.taskManagement ? '160px' : '0',
+                  maxHeight: open.taskManagement ? '250px' : '0',
                   transition: 'all 300ms ease-in-out',
                 }}
               >                    
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 1</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 2</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 3</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule /> Item 4</li>
+                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Skills Management</li>
+                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> User Management</li>
+                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Client Management</li>
+                <li className={`inline-flex items-center gap-2`} > <MdOutlineHorizontalRule size={8} /> Project Management</li>
+                <Link to="/dashboard?tab=absent-resources">
+                  <li className={`inline-flex items-center gap-2 ${(tab === 'absent-resources') && 'text-white'} `}> <MdOutlineHorizontalRule size={8} /> Absent or Partial Resource</li>
+                </Link>
               </ul>            
 
             </div>
