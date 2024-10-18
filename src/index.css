@@ -89,11 +89,20 @@ input::-webkit-inner-spin-button {
     font-family: Inter-Regular;
     font-size: 14px;
     color: rgba(21, 21, 41, 1);
+    transition: all ease-in-out 150ms !important;
   }
   
   .p-dropdown.p-inputwrapper-focus,
-  .p-calendar.p-focus {
+  .p-calendar.p-focus,
+  .p-inputnumber.p-inputwrapper-focus {
+    outline: none !important;
     border: 2px solid rgba(0, 69, 124, 1) !important;
+    box-shadow: none !important;
+  }
+
+  .p-calendar:not(.p-calendar-disabled).p-focus > .p-inputtext,
+  .p-inputtext:enabled:focus {
+    box-shadow: none !important;
   }
   
   .p-dropdown-panel,
@@ -143,9 +152,10 @@ input::-webkit-inner-spin-button {
     gap: 5px;
   }
 
-
-  .p-datepicker-group-container {
+  .p-datepicker {
     margin-top: 9px;
+  }
+  .p-datepicker-group-container {
     width: 100% !important;
     display: flex;
     align-items: center;
@@ -216,6 +226,10 @@ input::-webkit-inner-spin-button {
     max-width: 8rem;
     font-size: 24px;
   }
+
+  .p-inputswitch.p-highlight .p-inputswitch-slider {  
+    background-color: #00457C !important;
+  }	
 
 #numberInput {
   cursor: text !important;
