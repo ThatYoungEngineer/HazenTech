@@ -5,13 +5,13 @@ import { IoMdAddCircle } from 'react-icons/io'
 import { RxCross2 } from 'react-icons/rx'
 
 const users = [
-    { id: 1, name: "John Berg", theme: '#3DCE1E', availability: null },
-    { id: 1, name: "Lara Croft", theme: '#1876D2', availability: null },
-    { id: 1, name: "Heisenberg", theme: '#3DCE1E', availability: null },
-    { id: 1, name: "Mr. White", theme: '#3DCE1E', availability: '07:00 hours' },
-    { id: 1, name: "John Wick", theme: '#E9C50C', availability: null },
-    { id: 1, name: "Ali Ahmed", theme: '#3DCE1E', availability: null },
-    { id: 1, name: "Lars Alex", theme: '#1876D2', availability: null },
+    { id: 9, name: "John Berg", theme: '#3DCE1E', availability: null },
+    { id: 2, name: "Lara Croft", theme: '#1876D2', availability: null },
+    { id: 3, name: "Heisenberg", theme: '#3DCE1E', availability: null },
+    { id: 4, name: "Mr. White", theme: '#3DCE1E', availability: '07:00 hours' },
+    { id: 5, name: "John Wick", theme: '#E9C50C', availability: null },
+    { id: 6, name: "Ali Ahmed", theme: '#3DCE1E', availability: null },
+    { id: 7, name: "Lars Alex", theme: '#1876D2', availability: null },
 ]
 
 const clerks = [

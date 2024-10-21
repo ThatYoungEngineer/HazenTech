@@ -8,21 +8,20 @@ import { BiSolidDetail } from "react-icons/bi"
 import { BiSolidHelpCircle } from "react-icons/bi"
 import { MdOutlineHorizontalRule } from "react-icons/md"
 
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 
 const Sidebar = () => {
     const [open, setOpen] = useState({dashboard: false, taskManagement: false})
     const [tab, setTab] = useState(null)
+    const location = useLocation()
 
     useEffect(() => {
-      const urlParams = new URLSearchParams(location.search)
-      const tabFromURL = urlParams.get("tab")
+      const tabFromURL = location.pathname
   
       tabFromURL && setTab(tabFromURL)
     })
-  
-
+    
   return (
     <aside className='min-h-full w-full text-white bg-primary px-4 py-5'>
 
@@ -71,7 +70,7 @@ const Sidebar = () => {
                   taskManagement: !prevState.taskManagement
                 }))}
               >
-                <div className={` flex items-center gap-2 ${(tab === 'absent-resources') ? 'text-white' : 'text-green-300'} `}>
+                <div className={` flex items-center gap-2 ${(tab === '/absent-resources') ? 'text-white' : 'text-green-300'} `}>
                   <PiUserListFill size={20} />
                   <h3>Administration</h3>
                 </div>
@@ -89,8 +88,8 @@ const Sidebar = () => {
                 <li className="inline-flex items-center gap-2" style={{ cursor: 'not-allowed'}}> <MdOutlineHorizontalRule size={8} /> User Management</li>
                 <li className="inline-flex items-center gap-2" style={{ cursor: 'not-allowed'}}> <MdOutlineHorizontalRule size={8} /> Client Management</li>
                 <li className={`inline-flex items-center gap-2`} style={{ cursor: 'not-allowed'}} > <MdOutlineHorizontalRule size={8} /> Project Management</li>
-                <Link to="/dashboard?tab=absent-resources">
-                  <li className={`inline-flex items-center gap-2 ${(tab === 'absent-resources') ? 'text-white' : 'text-green-300'} `}> <MdOutlineHorizontalRule size={8} /> Absent or Partial Resource</li>
+                <Link to="/absent-resources">
+                  <li className={`inline-flex items-center gap-2 ${(tab === '/absent-resources') ? 'text-white' : 'text-green-300'} `}> <MdOutlineHorizontalRule size={8} /> Absent or Partial Resource</li>
                 </Link>
               </ul>            
 
@@ -104,8 +103,8 @@ const Sidebar = () => {
             </div>
           </li>              
 
-          <Link to='/dashboard?tab=task-management'>
-            <li className={`w-full flex items-center justify-between cursor-pointer ${(tab === 'task-management' || tab === 'create-task' ) ? 'text-white' : 'text-green-300'} `} >
+          <Link to='/task-management'>
+            <li className={`w-full flex items-center justify-between cursor-pointer ${(tab === '/' || tab === '/task-management' || tab === '/create-task' ) ? 'text-white' : 'text-green-300'} `} >
               <div className="flex items-center gap-2">
                 <BiSolidDetail size={20} />
                 <h3>Task Management</h3>

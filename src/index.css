@@ -63,6 +63,10 @@ input::-webkit-inner-spin-button {
 .even-row {
   background-color: #F5F8FA;
 }
+
+.innerHeight {
+  height: calc(100vh - 62px) !important;
+}
   
 .MuiPaginationItem-root.Mui-selected {
   background-color: #00457C !important;

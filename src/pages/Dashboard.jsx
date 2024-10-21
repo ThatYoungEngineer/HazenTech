@@ -15,8 +15,7 @@ const Dashboard = () => {
   const [tab, setTab] = useState(null)
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search)
-    const tabFromURL = urlParams.get("tab")
+    const tabFromURL = location.pathname
 
     tabFromURL && setTab(tabFromURL)
   })
@@ -39,9 +38,9 @@ const Dashboard = () => {
         </aside>
         <main className={`h-full w-full transition-all ease-in-out duration-300  ${openSidebar ? 'ml-64 2xl:ml-72' : 'ml-0'} bg-[#EFF4F8] flex flex-col items-center justify-between`}>
           <section className='h-full w-full'>
-            {tab === 'task-management' && <TaskManagement />}
-            {tab === 'create-task' && <CreateTask />}
-            {tab === 'absent-resources' && <AbsentResources />}
+            {(tab === '/' || tab === '/task-management') && <TaskManagement />}
+            {tab === '/create-task' && <CreateTask />}
+            {tab === '/absent-resources' && <AbsentResources />}
           </section>
           <Footer />
         </main>

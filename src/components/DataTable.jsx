@@ -157,7 +157,7 @@ export default function EnhancedTable() {
                       color: '#06152B',
                       fontFamily: 'Inter-Medium',
                       fontSize: '0.875rem',
-                      width: '11rem', // Set a minimum width as needed
+                      width: '11rem'
                     }}
                   >
                     {row.number_of_tasks}
