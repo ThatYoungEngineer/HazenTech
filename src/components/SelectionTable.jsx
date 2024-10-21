@@ -11,42 +11,39 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
+import { GrSearch } from 'react-icons/gr';
 
-//records factory
-
+// records factory
 function createData(id, name, email) {
-    return {
-      id,
-      name,
-      email,
-    };
-  }
-  
-  // Function to generate a random name
-  function getRandomName() {
-    const names = [
-      'Talha', 'Ali', 'Munawar', 'Faraz', 'Muhammad', 
-      'Sara', 'Aisha', 'Zain', 'Hina', 'Omar', 
-      'Aliya', 'Rashid', 'Sana', 'Usman', 'Maya',
-      // Add more names as needed
-    ];
-    return names[Math.floor(Math.random() * names.length)];
-  }
-  
-  // Function to generate a random email
-  function getRandomEmail(name) {
-    const domains = ['gmail.com', 'hazen.com', 'yahoo.com', 'outlook.com'];
-    return `${name.toLowerCase().replace(/\s+/g, '')}@${domains[Math.floor(Math.random() * domains.length)]}`;
-  }
-  
-  const rows = [];
-  for (let i = 1; i <= 100; i++) {
-    const name = getRandomName();
-    const email = getRandomEmail(name);
-    rows.push(createData(i, name, email));
-  }
-  
-  
+  return {
+    id,
+    name,
+    email,
+  };
+}
+
+// Function to generate a random name
+function getRandomName() {
+  const names = [
+    'Talha', 'Ali', 'Munawar', 'Faraz', 'Muhammad', 
+    'Sara', 'Aisha', 'Zain', 'Hina', 'Omar', 
+    'Aliya', 'Rashid', 'Sana', 'Usman', 'Maya',
+  ];
+  return names[Math.floor(Math.random() * names.length)];
+}
+
+// Function to generate a random email
+function getRandomEmail(name) {
+  const domains = ['gmail.com', 'hazen.com', 'yahoo.com', 'outlook.com'];
+  return `${name.toLowerCase().replace(/\s+/g, '')}@${domains[Math.floor(Math.random() * domains.length)]}`;
+}
+
+const rows = [];
+for (let i = 1; i <= 100; i++) {
+  const name = getRandomName();
+  const email = getRandomEmail(name);
+  rows.push(createData(i, name, email));
+}
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -82,7 +79,7 @@ function EnhancedTableHead(props) {
           <TableCell
             align='left'
             padding='normal'
-            sx={{ backgroundColor: '#FBFBFB', border: '1px solid #E7E8EA', fontFamily: 'Inter-Semibold', fontSize: '13px', color: '#535353'}}
+            sx={{ width:'45%', backgroundColor: '#FBFBFB', border: '1px solid #E7E8EA', fontFamily: 'Inter-Semibold', fontSize: '13px', color: '#535353'}}
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -95,7 +92,7 @@ function EnhancedTableHead(props) {
             </TableSortLabel>
           </TableCell>
         ))}
-        <TableCell padding="checkbox" sx={{ background: '#FBFBFB', borderRight: "1px solid #E7E8EA", borderTop: '1px solid #E7E8EA' }} >
+        <TableCell padding="checkbox" sx={{ width:'10%', background: '#FBFBFB', borderRight: "1px solid #E7E8EA", borderTop: '1px solid #E7E8EA' }} >
           <Checkbox
             color="#fff" 
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -131,6 +128,7 @@ export default function SelectionTable() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [searchQuery, setSearchQuery] = React.useState(''); // State for search input
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -139,14 +137,14 @@ export default function SelectionTable() {
   };
 
   const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
+    if (selected.length === 0) {
       const newSelected = rows.map((n) => n.id);
       setSelected(newSelected);
-      return;
+    } else {
+      setSelected([]);
     }
-    setSelected([]);
-  };
-
+  }  
+  
   const handleClick = (event, id) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
@@ -168,18 +166,31 @@ export default function SelectionTable() {
     setPage(1);
   };
 
-  const visibleRows = React.useMemo(
-    () =>
-      [...rows]
-        .sort(getComparator(order, orderBy))
-        .slice((page - 1) * rowsPerPage, page * rowsPerPage),
-    [order, orderBy, page, rowsPerPage],
-  );
+  // Filter visible rows based on search query
+  const visibleRows = React.useMemo(() => {
+    return [...rows]
+      .filter(row => 
+        row.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        row.email.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+      .sort(getComparator(order, orderBy))
+      .slice((page - 1) * rowsPerPage, page * rowsPerPage);
+  }, [order, orderBy, page, rowsPerPage, searchQuery]); // Add searchQuery as a dependency
 
   return (
     <Box sx={{ width: '100%' }}>
+      <div className="relative mb-5">
+        <input 
+          type="text" 
+          placeholder="Search"
+          value={searchQuery} // Set the value to the state variable
+          onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
+          className="w-full py-2 px-9 bg-white border border-[##D9D9D9] outline-none focus:border-[#00457C] font-Inter-Medium text-sm text-primary placeholder:font-Roboto-Medium placeholder:text-[#545454] placeholder:text-sm rounded-md" 
+        />
+        <GrSearch className="font-medium text-[#545454] absolute top-1/2 left-5 transform -translate-x-1/2 -translate-y-1/2" size={16} />
+      </div>
       <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{maxHeight: {lg:'279px', xl: '352px'}, overflowY: 'auto' }}>
+        <TableContainer sx={{ minHeight: {lg: '280px', xl: '500px'}, maxHeight: {lg:'279px', xl: '500px'}, overflowY: 'auto' }}>
           <Table
             sx={{ minWidth: 350, borderCollapse: 'collapse' }}
             aria-labelledby="tableTitle"
@@ -193,6 +204,15 @@ export default function SelectionTable() {
               rowCount={rows.length}
             />
             <TableBody>
+              {visibleRows.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={headCells.length + 1} align="center" sx={{borderRight: "1px solid #E7E8EA", borderLeft: '1px solid #E7E8EA'}}>
+                    <div className="w-full h-full FlexCenter font-Inter-SemiBold text-base text-primary">
+                      <p> <i> No results found!</i> </p>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              )}
               {visibleRows.map((row, index) => {
                 const isItemSelected = selected.includes(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
@@ -212,14 +232,14 @@ export default function SelectionTable() {
                       sx={{ minWidth: 150, border: '1px solid #E7E8EA', fontFamily: 'Inter-Regular', fontSize: '13px', color: '#06152B', fontWeight: '400' }}
                       padding="normal"
                     >
-                        <span className='flex items-center gap-1'>
-                            <img 
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34VNI2RCmMP7q-xSlNft7ya1cNF_HxOZ-xA&s" 
-                                alt="user"
-                                className='w-10 h-10 rounded-full object-cover' 
-                            />
-                            {row.name}
-                        </span>
+                      <span className='flex items-center gap-1'>
+                          <img 
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34VNI2RCmMP7q-xSlNft7ya1cNF_HxOZ-xA&s" 
+                              alt="user"
+                              className='w-10 h-10 rounded-full object-cover' 
+                          />
+                          {row.name}
+                      </span>
                     </TableCell>
                     <TableCell
                       align="left"
@@ -248,10 +268,10 @@ export default function SelectionTable() {
         </TableContainer>
         <section className='w-full mt-5 flex items-center justify-between'>
           <section className='flex items-center gap-2 font-Roboto-Regular text-sm'>
-            <button type='button' onClick={() => setRowsPerPage(5)} className={`p-3 rounded-md ${rowsPerPage == '5' ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent' }  cursor-pointer`}>5</button>
-            <button type='button' onClick={() => setRowsPerPage(10)} className={`p-3 rounded-md ${rowsPerPage == '10' ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent' }  cursor-pointer`}> 10 </button>
+            <button type='button' onClick={() => setRowsPerPage(5)} className={`p-3 rounded-md ${rowsPerPage === 5 ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent' }  cursor-pointer`}>5</button>
+            <button type='button' onClick={() => setRowsPerPage(10)} className={`p-3 rounded-md ${rowsPerPage === 10 ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent' }  cursor-pointer`}> 10 </button>
             <button type='button' onClick={() => { setRowsPerPage(rows.length); setPage(1); }} className={`p-3 rounded-md ${rowsPerPage === rows.length ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent'}`}>All</button>
-            </section>
+          </section>
           <section>
             <Pagination
               count={Math.ceil(rows.length / rowsPerPage)} // Set total pages based on rows

@@ -16,14 +16,21 @@ import Pagination from '@mui/material/Pagination'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { BiSolidPencil } from 'react-icons/bi'
 
+
 function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
+  if (orderBy === 'number_of_tasks') {
+    return Number(b[orderBy]) - Number(a[orderBy]); // Number comparison
   }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
+
+  if (orderBy === 'created_at') {
+    return new Date(b[orderBy]) - new Date(a[orderBy]); // Proper date comparison
   }
-  return 0;
+
+  if (typeof a[orderBy] === 'string' && typeof b[orderBy] === 'string') {
+    return b[orderBy].localeCompare(a[orderBy]); // String comparison
+  }
+
+  return b[orderBy] < a[orderBy] ? -1 : 1;
 }
 
 function getComparator(order, orderBy) {
@@ -31,6 +38,8 @@ function getComparator(order, orderBy) {
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
+
+
 
 const headCells = [
   { id: 'task_type', numeric: false, disablePadding: true, label: 'Task Type' },
@@ -134,8 +143,9 @@ export default function EnhancedTable() {
                     sx={{ 
                       border: '1px solid #E7E8EA',
                       color: '#06152B',
-                      fontFamily: 'Inter-Regular',
+                      fontFamily: 'Inter-Medium',
                       fontSize: '0.875rem',
+                      width: '25%'
                     }}
                   >
                     {row.task_type}
@@ -145,18 +155,20 @@ export default function EnhancedTable() {
                     sx={{ 
                       border: '1px solid #E7E8EA',
                       color: '#06152B',
-                      fontFamily: 'Inter-Regular',
+                      fontFamily: 'Inter-Medium',
                       fontSize: '0.875rem',
+                      width: '11rem', // Set a minimum width as needed
                     }}
                   >
                     {row.number_of_tasks}
                   </TableCell>
                   <TableCell 
+                    align='center'
                     sx={{ 
                       border: '1px solid #E7E8EA',
                       color: '#06152B',
-                      fontFamily: 'Inter-Regular',
-                      fontSize: '0.875rem',
+                      fontFamily: 'Inter-Medium',
+                      fontSize: '0.875rem'
                     }}
                   >
                     {row.project}
@@ -165,7 +177,7 @@ export default function EnhancedTable() {
                     sx={{ 
                       border: '1px solid #E7E8EA',
                       color: '#06152B',
-                      fontFamily: 'Inter-Regular',
+                      fontFamily: 'Inter-Medium',
                       fontSize: '0.875rem',
                     }}
                   >
@@ -175,23 +187,32 @@ export default function EnhancedTable() {
                     sx={{ 
                       border: '1px solid #E7E8EA',
                       color: '#06152B',
-                      fontFamily: 'Inter-Regular',
+                      fontFamily: 'Inter-Medium',
                       fontSize: '0.875rem',
                     }}
                   >
-                    {row.created_at}
+                      {new Date(row.created_at).toLocaleString('en-GB', {
+                        timeZone: 'UTC',
+                        hour12: true,
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
                   </TableCell>
                   <TableCell
+                  padding='checkbox'
                     sx={{ 
                       border: '1px solid #E7E8EA',
                       color: '#06152B',
-                      fontFamily: 'Inter-Regular',
-                      fontSize: '0.875rem',
+                      fontFamily: 'Inter-Medium',
+                      fontSize: '0.875rem'
                     }}
                   >
-                    <div className='w-full flex items-center gap-3'>
-                      <BiSolidPencil color='#00457C' size={20} className='cursor-pointer' />
-                      <FaRegTrashAlt color='#CB4B6C' size={18} className='cursor-pointer' />
+                    <div className='w-full flex items-center justify-center gap-3'>
+                      <BiSolidPencil color='#00457C' size={20} className='cursor-not-allowed' />
+                      <FaRegTrashAlt color='#CB4B6C' size={18} className='cursor-not-allowed' />
                     </div>
                   </TableCell>
                 </TableRow>

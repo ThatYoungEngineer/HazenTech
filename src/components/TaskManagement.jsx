@@ -1,7 +1,6 @@
-import { IoAdd } from "react-icons/io5"
 import EnhancedTable from "./DataTable.jsx"
 import { Link } from "react-router-dom"
-
+import { IoMdAdd } from "react-icons/io"
 
 const TaskManagement = () => {
   return (
@@ -9,8 +8,8 @@ const TaskManagement = () => {
       <div className='w-full flex items-center justify-between'>
         <h2 className='font-Inter-Regular font-light text-xl text-primary'>Task Management</h2>
         <Link to='/dashboard?tab=create-task'>
-          <button type="button" className="flex gap-2 items-center py-3 px-4 rounded-md bg-[#00457C]">
-            <IoAdd color="#fff" className="w-5 h-5" />
+          <button type="button" className="flex gap-2 items-center py-3 px-4 rounded-md bg-[#00457C] hover:shadow-lg transition ease-in-out duration-200">
+            <IoMdAdd color="#fff" size={20} />
             <h3 className="font-Inter-Regular text-sm text-white">Create Task</h3>
           </button>
         </Link>

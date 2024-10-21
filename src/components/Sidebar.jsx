@@ -32,11 +32,11 @@ const Sidebar = () => {
             <div className="w-full flex flex-col">
 
               <div
-                className="w-full flex items-center justify-between cursor-pointer"
-                onClick={() => setOpen(prevState => ({
-                  ...prevState,
-                  dashboard: !prevState.dashboard
-                }))}    
+                className="w-full flex items-center justify-between cursor-not-allowed"
+                // onClick={() => setOpen(prevState => ({
+                //   ...prevState,
+                //   dashboard: !prevState.dashboard
+                // }))}    
               >
                 <div className="flex items-center gap-2">
                   <MdSpaceDashboard size={20} />
@@ -46,7 +46,7 @@ const Sidebar = () => {
               </div>              
 
               <ul
-                className={`sidebar-list text-[13px] flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.dashboard ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
+                className={`sidebar-list text-[14px] flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.dashboard ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
                 style={{
                   maxHeight: open.dashboard ? '160px' : '0',
                   transition: 'all 300ms ease-in-out',
@@ -71,7 +71,7 @@ const Sidebar = () => {
                   taskManagement: !prevState.taskManagement
                 }))}
               >
-                <div className={` flex items-center gap-2 ${(tab === 'absent-resources') && 'text-white'} `}>
+                <div className={` flex items-center gap-2 ${(tab === 'absent-resources') ? 'text-white' : 'text-green-300'} `}>
                   <PiUserListFill size={20} />
                   <h3>Administration</h3>
                 </div>
@@ -79,25 +79,25 @@ const Sidebar = () => {
               </div>
 
               <ul
-                className={`sidebar-list text-[13px] flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.taskManagement ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
+                className={`sidebar-list text-[14px] flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.taskManagement ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
                 style={{
                   maxHeight: open.taskManagement ? '250px' : '0',
                   transition: 'all 300ms ease-in-out',
                 }}
               >                    
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Skills Management</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> User Management</li>
-                <li className="inline-flex items-center gap-2"> <MdOutlineHorizontalRule size={8} /> Client Management</li>
-                <li className={`inline-flex items-center gap-2`} > <MdOutlineHorizontalRule size={8} /> Project Management</li>
+                <li className="inline-flex items-center gap-2" style={{ cursor: 'not-allowed'}}> <MdOutlineHorizontalRule size={8} /> Skills Management</li>
+                <li className="inline-flex items-center gap-2" style={{ cursor: 'not-allowed'}}> <MdOutlineHorizontalRule size={8} /> User Management</li>
+                <li className="inline-flex items-center gap-2" style={{ cursor: 'not-allowed'}}> <MdOutlineHorizontalRule size={8} /> Client Management</li>
+                <li className={`inline-flex items-center gap-2`} style={{ cursor: 'not-allowed'}} > <MdOutlineHorizontalRule size={8} /> Project Management</li>
                 <Link to="/dashboard?tab=absent-resources">
-                  <li className={`inline-flex items-center gap-2 ${(tab === 'absent-resources') && 'text-white'} `}> <MdOutlineHorizontalRule size={8} /> Absent or Partial Resource</li>
+                  <li className={`inline-flex items-center gap-2 ${(tab === 'absent-resources') ? 'text-white' : 'text-green-300'} `}> <MdOutlineHorizontalRule size={8} /> Absent or Partial Resource</li>
                 </Link>
               </ul>            
 
             </div>
           </li>              
           
-          <li className="w-full flex items-center justify-between cursor-pointer">
+          <li className="w-full flex items-center justify-between cursor-not-allowed">
             <div className="flex items-center gap-2">
               <FaUsers size={20} />
               <h3>Team Management</h3>
@@ -105,7 +105,7 @@ const Sidebar = () => {
           </li>              
 
           <Link to='/dashboard?tab=task-management'>
-            <li className={`w-full flex items-center justify-between cursor-pointer ${(tab === 'task-management' || tab === 'create-task' ) && 'text-white'} `} >
+            <li className={`w-full flex items-center justify-between cursor-pointer ${(tab === 'task-management' || tab === 'create-task' ) ? 'text-white' : 'text-green-300'} `} >
               <div className="flex items-center gap-2">
                 <BiSolidDetail size={20} />
                 <h3>Task Management</h3>
@@ -113,7 +113,7 @@ const Sidebar = () => {
             </li>        
           </Link>
 
-          <li className="w-full flex items-center justify-between cursor-pointer">
+          <li className="w-full flex items-center justify-between cursor-not-allowed">
             <div className="flex items-center gap-2">
               <BiSolidHelpCircle size={20} />
               <h3>Help</h3>

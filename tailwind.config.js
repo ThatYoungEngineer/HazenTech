@@ -12,7 +12,9 @@ export default {
     extend: {
       fontFamily: {
         'Roboto-Regular' : ['Roboto-Regular', 'sans-serif'],
+        'Roboto-Medium' : ['Roboto-Medium', 'sans-serif'],
         'Inter-Regular' : ['Inter-Regular', 'sans-serif'],
+        'Inter-Medium' : ['Inter-Medium', 'sans-serif'],
         'Inter-SemiBold' : ['Inter-SemiBold', 'sans-serif'],
       },
       colors: {

@@ -66,7 +66,7 @@ const CreateTask = () => {
                         optionLabel="label" 
                         highlightOnSelect={true}
                         placeholder="Select Task Type"
-                        className="w-[70%] 2xl:w-[80%]" 
+                        className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm" 
                     />
                 </div>
                 <div className="w-full flex items-center gap-2">
@@ -75,7 +75,7 @@ const CreateTask = () => {
                     </label>
                     <Dropdown
                         value={selectedProject} onChange={(e) => setSelectedProject(e.value)} options={projects} optionLabel="label" 
-                        placeholder="Select Project" className="w-[70%] 2xl:w-[80%]"
+                        placeholder="Select Project" className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm"
                     />
                 </div>
                 <div className="w-full flex items-center gap-2">
@@ -84,14 +84,14 @@ const CreateTask = () => {
                     </label>
                     <Dropdown
                         value={selectedPriority} onChange={(e) => setSelectedPriority(e.value)} options={priorities} optionLabel="label" 
-                        placeholder="Select Priority" className="w-[70%] 2xl:w-[80%]"
+                        placeholder="Select Priority" className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm"
                     />
                 </div>
                 <div className="w-full flex items-center gap-2">
                     <label htmlFor="due-date" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
                         Due Date
                     </label>
-                    <Calendar placeholder="Select Due Date" dateFormat="dd-mm-yy" value={date} onChange={(e) => setDate(e.value)} showIcon className="w-[70%] 2xl:w-[80%]"  />
+                    <Calendar placeholder="Select Due Date" dateFormat="dd-mm-yy" value={date} onChange={(e) => setDate(e.value)} showIcon className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm cursor-pointer"  />
                 </div>
                 <div className="w-full flex items-center gap-2">
                     <label htmlFor="integer-only" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
@@ -105,11 +105,11 @@ const CreateTask = () => {
                         <h3> Allocate Resources </h3>
                     </span>
                     <div className="mt-5 flex items-center gap-3">
-                        <button type="button" className="font-Inter-Regular text-sm rounded-md bg-[#00457C] flex items-center gap-2 py-2 px-3 text-white">
+                        <button type="button" disabled className=" disabled:opacity-40 font-Inter-Regular text-sm rounded-md bg-[#00457C] flex items-center gap-2 py-2 px-3 text-white cursor-not-allowed">
                             <FaSave />
-                            Save
+                            Save 
                         </button>
-                        <button type="button" className="font-Inter-Regular text-sm rounded-md text-[#00457C] border border-[#00457C] flex items-center gap-1 py-2 px-3 bg-transparent">
+                        <button type="button" disabled className="font-Inter-Regular text-sm rounded-md text-[#00457C] border border-[#00457C] flex items-center gap-1 py-2 px-3 bg-transparent cursor-not-allowed">
                             <RxCross2 />
                             Cancel
                         </button>

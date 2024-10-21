@@ -5,11 +5,11 @@ import { Link } from "react-router-dom"
 const BreadCrumb = ({route}) => {
   return (
     <div className="flex items-center">
-        <Link to='/'>
-            <IoHome color="#00457C" size={25} />
-        </Link>
-        <PiLineVertical color="#00457C" size={25} className="rotate-12" />
-        <h2 className="text-[#00457C] font-Inter-Regular text-sm">{route}</h2> 
+      <Link to='/'>
+        <IoHome color="#00457C" size={20} />
+      </Link>
+      <PiLineVertical color="#00457C" size={20} className="rotate-12" />
+      <h2 className="text-[#00457C] font-Inter-Regular text-sm">{route}</h2> 
     </div>
   )
 }
