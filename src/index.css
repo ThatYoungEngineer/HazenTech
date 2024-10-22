@@ -59,10 +59,6 @@ input::-webkit-inner-spin-button {
 .sidebar-list > li {
   cursor: pointer;
 }
-
-.even-row {
-  background-color: #F5F8FA;
-}
   
 .MuiPaginationItem-root.Mui-selected {
   background-color: #00457C !important;
@@ -252,6 +248,6 @@ input::-webkit-inner-spin-button {
   cursor: text !important;
 }
 
-.Mui-selected  {
-  background-color: transparent !important;
+.css-1o768wo-MuiTableRow-root.Mui-selected {
+  background-color: inherit !important;
 }

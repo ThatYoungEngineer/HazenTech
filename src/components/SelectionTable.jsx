@@ -42,6 +42,9 @@ function EnhancedTableHead(props) {
     onRequestSort(event, property);
   };
 
+  const isChecked = rowCount > 0 && numSelected === rowCount;
+  const isIndeterminate = numSelected > 0 && numSelected < rowCount;
+
   return (
     <TableHead>
       <TableRow>
@@ -49,7 +52,14 @@ function EnhancedTableHead(props) {
           <TableCell
             align="left"
             padding="normal"
-            sx={{ width: '45%', backgroundColor: '#FBFBFB', border: '1px solid #E7E8EA', fontFamily: 'Inter-Semibold', fontSize: '13px', color: '#535353' }}
+            sx={{
+              width: '45%',
+              backgroundColor: '#FBFBFB',
+              border: '1px solid #E7E8EA',
+              fontFamily: 'Inter-Semibold',
+              fontSize: '13px',
+              color: '#535353',
+            }}
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -63,13 +73,17 @@ function EnhancedTableHead(props) {
           </TableCell>
         ))}
         <TableCell
-          padding="checkbox"
-          sx={{ width: '10%', background: '#FBFBFB', borderRight: '1px solid #E7E8EA', borderTop: '1px solid #E7E8EA' }}
+          padding="none"
+          sx={{
+            width: '5%',
+            background: '#FBFBFB',
+            borderRight: '1px solid #E7E8EA',
+            borderTop: '1px solid #E7E8EA',
+          }}
         >
           <Checkbox
-            color="#fff"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
+            indeterminate={isIndeterminate}
+            checked={isChecked}
             onChange={onSelectAllClick}
             inputProps={{
               'aria-label': 'select all items',
@@ -77,7 +91,7 @@ function EnhancedTableHead(props) {
             sx={{
               '&.Mui-checked': {
                 color: '#00457C',
-              },
+              }
             }}
           />
         </TableCell>
@@ -86,6 +100,7 @@ function EnhancedTableHead(props) {
   );
 }
 
+
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
@@ -93,11 +108,7 @@ EnhancedTableHead.propTypes = {
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
-};
-
-
-
-
+}
 
 
 
@@ -116,12 +127,7 @@ export default function SelectionTable ( {unchecked} ) {
 
   console.log("selected users: ", selectedUsers)
 
-  const rows = users;
-
-  // Use useEffect to handle updating selected users when `selected` changes
-  React.useEffect(() => {
-    handleSelectUser(selected);
-  }, [selected]); // Only trigger when `selected` changes
+  const rows = users  //initialize with users
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -139,37 +145,19 @@ export default function SelectionTable ( {unchecked} ) {
     }
   };
 
-  React.useEffect (()=> {
-      handleSelectUser("emptyArray")
-  }, [])
+  // React.useEffect (()=> {
+  //   handleSelectUser("emptyArray")
+  // }, [])
   
   
-  const handleClick = (event, id) => {
-    handleSelectUser(id)
+  const handleClick = (event, id) => handleSelectUser(id)
 
-    // const selectedIndex = selected.indexOf(id);
-    // let newSelected = [];
-
-    // if (selectedIndex === -1) {
-    //   newSelected = newSelected.concat(selected, id);
-    // } else {
-    //   newSelected = newSelected.concat(
-    //     selected.slice(0, selectedIndex),
-    //     selected.slice(selectedIndex + 1)
-    //   );
-    // }
-    // setSelected(newSelected);
-
-  };
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const handleChangePage = (event, newPage) => setPage(newPage)
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(1);
-  };
+    setRowsPerPage(parseInt(event.target.value, 10))
+    setPage(1)
+  }
 
   const visibleRows = React.useMemo(() => {
     return [...rows]
@@ -190,15 +178,15 @@ export default function SelectionTable ( {unchecked} ) {
           placeholder="Search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full py-2 px-9 bg-white border border-[##D9D9D9] outline-none focus:border-[#00457C] font-Inter-Medium text-sm text-primary placeholder:font-Roboto-Medium placeholder:text-[#545454] placeholder:text-sm rounded-md"
+          className="w-full py-2 px-9 bg-white border border-[##D9D9D9] outline-none focus:border-[#00457C] font-Inter-Regular text-sm text-primary placeholder:font-Roboto-Regular placeholder:text-[#545454] placeholder:text-sm rounded-md"
         />
         <GrSearch className="font-medium text-[#545454] absolute top-1/2 left-5 transform -translate-x-1/2 -translate-y-1/2" size={16} />
       </div>
       <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{ minHeight: { lg: '450px', xl: '500px' }, maxHeight: { lg: '279px', xl: '500px' }, overflowY: 'auto' }}>
+        <TableContainer sx={{ minHeight: { lg: '450px', xl: '600px' }, maxHeight: { lg: '279px', xl: '500px' }, overflowY: 'auto' }}>
           <Table sx={{ minWidth: 350, borderCollapse: 'collapse' }} aria-labelledby="tableTitle">
             <EnhancedTableHead
-              numSelected={selected.length}
+              numSelected={selectedUsers.length}
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
@@ -227,8 +215,10 @@ export default function SelectionTable ( {unchecked} ) {
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
-                    sx={{ cursor: 'pointer', border: '1px solid #E7E8EA' }}
-                    className={index % 2 !== 0 ? 'even-row' : ''}
+                    className={index % 2 !== 0 && 'bg-[#F5F8FA]'}
+                    sx={{ cursor: 'pointer', border: '1px solid #E7E8EA', '&.Mui-selected': { 
+                      backgroundColor: index % 2 !== 0 ? '#F5F8FA' : '#FFF'
+                    }}}
                   >
                     <TableCell
                       sx={{
@@ -239,13 +229,13 @@ export default function SelectionTable ( {unchecked} ) {
                         color: '#06152B',
                         fontWeight: '400',
                       }}
-                      padding="normal"
+                      padding="checkbox"
                     >
                       <span className="flex items-center gap-1">
                         <img
                           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34VNI2RCmMP7q-xSlNft7ya1cNF_HxOZ-xA&s"
                           alt="user"
-                          className="w-10 h-10 rounded-full object-cover"
+                          className="w-8 h-8 rounded-full object-cover"
                         />
                         {row.name}
                       </span>
@@ -253,7 +243,7 @@ export default function SelectionTable ( {unchecked} ) {
                     <TableCell align="left" sx={{ border: '1px solid #E7E8EA', fontFamily: 'Inter-Regular', fontSize: '13px', color: '#06152B' }}>
                       {row.email}
                     </TableCell>
-                    <TableCell padding="checkbox">
+                    <TableCell padding="none">
                       <Checkbox
                         checked={isItemSelected}
                         inputProps={{

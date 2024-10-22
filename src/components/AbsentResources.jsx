@@ -101,7 +101,7 @@ const AbsentResources = () => {
                                 </section>
                             )) : (
                                 <div className="w-full h-full flex items-center justify-center">
-                                    <h3 className="font-Inter-Regular text-lg text-gray-500 italic">No resource available.</h3>
+                                    <h3 className="font-Inter-Regular text-lg text-gray-500 italic">No resource selected.</h3>
                                 </div>
                             )
                         }
