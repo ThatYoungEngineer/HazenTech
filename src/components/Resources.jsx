@@ -56,10 +56,10 @@ const Resources = () => {
                             value={selectedClerk} onChange={(e) => setSelectedClerk(e.value)} options={clerks} optionLabel="label" 
                             placeholder="Select Clerk" className="w-32"
                         />
-                        <span className="w-8 h-8 hover:bg-[#D9E3EC] FlexCenter rounded-full transition ease-in-out duration-200 cursor-pointer">
-                            <BiSolidCommentAdd size={20} color="#00457C" />
+                        <span className="w-8 h-8 hover:bg-[#D9E3EC] FlexCenter rounded-full transition ease-in-out duration-200 cursor-not-allowed">
+                            <BiSolidCommentAdd size={20} color="#00457C" cursor={"not-allowed"} />
                         </span>
-                        <RxCross2 size={20} color="#00457C" cursor={"pointer"} />
+                        <RxCross2 size={20} color="#00457C" cursor={"not-allowed"} />
                         <input
                             type="number"
                             className="bg-transparent border-b border-[#D5D5D5] py-2 w-10 flex items-center justify-end font-Inter-Regular text-sm text-[#3E3E3E] text-right outline-none"

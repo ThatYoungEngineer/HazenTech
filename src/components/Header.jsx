@@ -18,11 +18,11 @@ const Header = () => {
         <RxHamburgerMenu size={30} color='#AAAAAA' className='cursor-pointer' onClick={updateSidebar} />
       </section>
       <section className='w-72 max-w-72 h-full pr-4 flex items-center justify-end gap-5'>
-        <span className='relative cursor-pointer'>
+        <span className='relative cursor-not-allowed'>
           <IoMdNotificationsOutline size={26} color='#495057' />
           <span className='absolute -top-1 -right-[9px] text-xs FlexCenter text-white bg-[#CB4B6C] font-Inter-SemiBold font-bold w-5 h-5 rounded-full'>1</span>
         </span>
-        <div className='flex items-center gap-2 cursor-pointer'>
+        <div className='flex items-center gap-2 cursor-not-allowed'>
           <img src={User} alt="User Image" className='rounded-full w-7 h-7' />
           <h2 className='font-Inter-Regular text-sm text-[#495057]'>Mitchell Williamson</h2>
           <MdKeyboardArrowDown size={30} color='#989898'/>

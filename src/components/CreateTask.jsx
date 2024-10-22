@@ -100,7 +100,7 @@ const CreateTask = () => {
                     <InputNumber placeholder="Number of tasks" inputId="integer-only" value={number} onValueChange={(e) => setNumber(e.value)} id="numberInput"/>
                 </div>
                 <div className="ml-[120px]">
-                    <span className="flex items-center gap-1 font-Inter-Regular text-sm text-[#00457C] cursor-pointer">
+                    <span className="flex items-center gap-1 font-Inter-Regular text-sm text-[#00457C] cursor-not-allowed">
                         <GroupAddOutlinedIcon className="h-5 w-5"/>
                         <h3> Allocate Resources </h3>
                     </span>
