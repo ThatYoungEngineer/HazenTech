@@ -190,7 +190,7 @@ export default function SelectionTable ( {unchecked} ) {
         <GrSearch className="font-medium text-[#545454] absolute top-1/2 left-5 transform -translate-x-1/2 -translate-y-1/2" size={16} />
       </div>
       <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{ minHeight: { lg: '280px', xl: '500px' }, maxHeight: { lg: '279px', xl: '500px' }, overflowY: 'auto' }}>
+        <TableContainer sx={{ minHeight: { lg: '450px', xl: '500px' }, maxHeight: { lg: '279px', xl: '500px' }, overflowY: 'auto' }}>
           <Table sx={{ minWidth: 350, borderCollapse: 'collapse' }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}

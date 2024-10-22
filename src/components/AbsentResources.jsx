@@ -40,14 +40,14 @@ const AbsentResources = () => {
   ].join('-')
 
   return (
-    <section className='p-5 h-full w-full'>
+    <section className='p-5 w-full'>
         <div className='w-full flex items-center justify-between'>
             <h2 className='font-Inter-Regular font-light text-xl text-primary'>
                 Absent/Partial Resources | <span>{formattedDate}</span>
             </h2>
             <BreadCrumb route = "Absent Resources"/>
         </div>
-        <main className="mt-5 w-full min-h-fit bg-white header-shadow rounded-md p-5 flex" >
+        <main className="mt-5 w-full bg-white header-shadow rounded-md p-5 flex overflow-y-auto" >
             <section className="flex-1 pr-5 border-r border-[#E7E8EA] flex flex-col gap-5"> 
                 <h2 className="w-full text-primary font-Inter-Regular text-lg pb-1 border-b border-[#E8E8E8] ">Choose Resources for Absence Marking</h2>
                     <div className="w-full h-fit ">
@@ -62,49 +62,49 @@ const AbsentResources = () => {
                     </span>
                 </h2>
                 <main className="w-full h-full flex flex-col justify-between">
-                    <section className="w-full flex gap-3 flex-col h-full max-h-[279px] 2xl:max-h-[60vh] overflow-y-auto overflow-x-hidden">
-
-                    {selectedUsers && selectedUsers.length > 0
-                        ? users
-                            ?.filter(user => selectedUsers.includes(user.id))
-                            .sort((a, b) => selectedUsers.indexOf(a.id) - selectedUsers.indexOf(b.id)) 
-                            .map((user) => ( 
-                            <section key={user.id} className="py-2 px-3 w-[99%] flex items-center justify-between border border-[#00457C] rounded-md animate__animated animate__bounceInLeft animate__faster">
-                                <div className="flex gap-2 items-center">
-                                    <img 
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34VNI2RCmMP7q-xSlNft7ya1cNF_HxOZ-xA&s"
-                                        alt={`Profile picture of ${user.name}`}
-                                        className="w-10 h-10 object-cover rounded-full" 
-                                    />
-                                    <span className="flex flex-col justify-between h-full font-Inter-Medium text-sm text-primary">
-                                        <h3>{user.name}</h3>
-                                        <h3>{user.email}</h3>
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <h3 className="font-Inter-Regular text-sm text-black">Partially Available</h3>
-                                    <div className="card flex justify-center">
-                                        <InputSwitch 
-                                            checked={checkedStates[user.id]} 
-                                            onChange={() => handleToggle(user.id)} // Make sure handleToggle is defined
-                                            aria-label={`Toggle availability for ${user.name}`} // Accessible label
+                    <section className="flex gap-3 flex-col w-full h-full max-h-[75vh] 2xl:max-h-[60vh] overflow-y-auto overflow-x-hidden">
+                        {selectedUsers && selectedUsers.length > 0
+                            ? users
+                                ?.filter(user => selectedUsers.includes(user.id))
+                                .sort((a, b) => selectedUsers.indexOf(a.id) - selectedUsers.indexOf(b.id)) 
+                                .map((user) => ( 
+                                <section key={user.id} className="py-2 px-3 w-[99%] flex items-center justify-between border border-[#00457C] rounded-md animate__animated animate__bounceInLeft animate__faster">
+                                    <div className="flex gap-2 items-center">
+                                        <img 
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34VNI2RCmMP7q-xSlNft7ya1cNF_HxOZ-xA&s"
+                                            alt={`Profile picture of ${user.name}`}
+                                            className="w-10 h-10 object-cover rounded-full" 
+                                        />
+                                        <span className="flex flex-col justify-between h-full font-Inter-Medium text-sm text-primary">
+                                            <h3>{user.name}</h3>
+                                            <h3>{user.email}</h3>
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <h3 className="font-Inter-Regular text-sm text-black">Partially Available</h3>
+                                        <div className="card flex justify-center">
+                                            <InputSwitch 
+                                                checked={checkedStates[user.id]} 
+                                                onChange={() => handleToggle(user.id)} // Make sure handleToggle is defined
+                                                aria-label={`Toggle availability for ${user.name}`} // Accessible label
+                                            />
+                                        </div>
+                                        <HiTrash
+                                            size={25} 
+                                            color="#CB4B6C" 
+                                            cursor={'pointer'} 
+                                            onClick={() => handleRemoveUser(user.id)} // Make sure handleRemoveUser is defined
+                                            title={`Remove ${user.name}`} // Descriptive title for accessibility
+                                            aria-label={`Remove ${user.name}`} // Accessible label
                                         />
                                     </div>
-                                    <HiTrash
-                                        size={25} 
-                                        color="#CB4B6C" 
-                                        cursor={'pointer'} 
-                                        onClick={() => handleRemoveUser(user.id)} // Make sure handleRemoveUser is defined
-                                        title={`Remove ${user.name}`} // Descriptive title for accessibility
-                                        aria-label={`Remove ${user.name}`} // Accessible label
-                                    />
+                                </section>
+                            )) : (
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <h3 className="font-Inter-Regular text-lg text-gray-500 italic">No resource available.</h3>
                                 </div>
-                            </section>
-                        )) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                                <h3 className="font-Inter-Regular text-lg text-gray-500 italic">No resource available.</h3>
-                            </div>
-                        )}
+                            )
+                        }
                     </section>
                     {selectedUsers?.length > 0 &&
                         <div className="mt-5 flex items-center gap-3">

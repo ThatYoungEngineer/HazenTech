@@ -124,7 +124,7 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{  maxHeight: '325px', overflowY: 'auto', border: 'none' }}>
+        <TableContainer sx={{  height: {lg: '22.2rem', xl: '30.2rem'} , overflowY: 'auto', border: 'none' }}>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               order={order}
@@ -157,7 +157,7 @@ export default function EnhancedTable() {
                       color: '#06152B',
                       fontFamily: 'Inter-Medium',
                       fontSize: '0.875rem',
-                      width: '11rem'
+                      width: '11.5rem'
                     }}
                   >
                     {row.number_of_tasks}

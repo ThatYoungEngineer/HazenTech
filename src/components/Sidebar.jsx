@@ -78,7 +78,7 @@ const Sidebar = () => {
               </div>
 
               <ul
-                className={`sidebar-list text-[14px] flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.taskManagement ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
+                className={`sidebar-list text-[13px] 2xl:text-sm flex flex-col gap-5 px-5 overflow-hidden transition-all ease-in-out duration-300 ${ open.taskManagement ? 'mt-5 max-h-40' : 'max-h-0 overflow-hidden' } `}
                 style={{
                   maxHeight: open.taskManagement ? '250px' : '0',
                   transition: 'all 300ms ease-in-out',
