@@ -183,7 +183,7 @@ export default function SelectionTable ( {unchecked} ) {
         <GrSearch className="font-medium text-[#545454] absolute top-1/2 left-5 transform -translate-x-1/2 -translate-y-1/2" size={16} />
       </div>
       <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{ minHeight: { lg: '450px', xl: '600px' }, maxHeight: { lg: '279px', xl: '500px' }, overflowY: 'auto' }}>
+        <TableContainer sx={{ minHeight: { lg: '472px', xl: '600px' }, maxHeight: { lg: '472px', xl: '500px' }, overflowY: 'auto' }}>
           <Table sx={{ minWidth: 350, borderCollapse: 'collapse' }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selectedUsers.length}
@@ -262,7 +262,7 @@ export default function SelectionTable ( {unchecked} ) {
             </TableBody>
           </Table>
         </TableContainer>
-        <section className="w-full mt-5 flex items-center justify-between">
+        <section className="w-full mt-5 2xl:mt-0 flex items-center justify-between">
           <section className="flex items-center gap-2 font-Roboto-Regular text-sm">
             <button
               type="button"
