@@ -130,6 +130,7 @@ export default function SelectionTable ( {unchecked} ) {
   };
 
   const handleSelectAllClick = (event) => {
+     console.log('handleSelectAllClick')
     if (selectedUsers.length === 0) {
       const allIds = rows.map((n) => parseInt(n.id));
       allIds.forEach(id => handleSelectUser(id)); 
@@ -137,6 +138,10 @@ export default function SelectionTable ( {unchecked} ) {
       handleSelectUser("emptyArray")
     }
   };
+
+  React.useEffect (()=> {
+      handleSelectUser("emptyArray")
+  }, [])
   
   
   const handleClick = (event, id) => {
