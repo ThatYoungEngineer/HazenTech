@@ -136,7 +136,7 @@ export default function EnhancedTable() {
                 <TableRow
                   hover
                   key={row.id}
-                  className={index % 2 !== 0 ? 'even-row' : ''}
+                  className={index % 2 !== 0 && 'bg-[#F5F8FA]'}
                   sx={{ border: '1px solid #E7E8EA' }}
                 >
                   <TableCell component="th" scope="row" padding="normal"
@@ -163,12 +163,13 @@ export default function EnhancedTable() {
                     {row.number_of_tasks}
                   </TableCell>
                   <TableCell 
-                    align='center'
+                    align='left'
                     sx={{ 
                       border: '1px solid #E7E8EA',
                       color: '#06152B',
                       fontFamily: 'Inter-Medium',
-                      fontSize: '0.875rem'
+                      fontSize: '0.875rem',
+                      width: {lg: '15%', xl: '10%'}
                     }}
                   >
                     {row.project}

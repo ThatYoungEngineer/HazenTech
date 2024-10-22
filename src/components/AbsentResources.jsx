@@ -22,7 +22,7 @@ const AbsentResources = () => {
         return acc
     }, {})
 
-  const [checkedStates, setCheckedStates] = useState(initialCheckedState);
+  const [checkedStates, setCheckedStates] = useState(initialCheckedState)
 
   const handleToggle = (userId) => {
     setCheckedStates((prev) => ({
@@ -31,13 +31,13 @@ const AbsentResources = () => {
     }));
   }
 
-  const date = new Date()
+    const date = new Date()
 
-  const formattedDate = [
-    String(date.getDate()).padStart(2, '0'),        
-    String(date.getMonth() + 1).padStart(2, '0'),
-    date.getFullYear()                              
-  ].join('-')
+    const formattedDate = [ 
+        String(date.getDate()).padStart(2, '0'),        
+        String(date.getMonth() + 1).padStart(2, '0'),
+        date.getFullYear()                              
+    ].join('-')
 
   return (
     <section className='p-5 w-full'>
@@ -85,17 +85,17 @@ const AbsentResources = () => {
                                         <div className="card flex justify-center">
                                             <InputSwitch 
                                                 checked={checkedStates[user.id]} 
-                                                onChange={() => handleToggle(user.id)} // Make sure handleToggle is defined
-                                                aria-label={`Toggle availability for ${user.name}`} // Accessible label
+                                                onChange={() => handleToggle(user.id)}
+                                                aria-label={`Toggle availability for ${user.name}`}
                                             />
                                         </div>
                                         <HiTrash
                                             size={25} 
                                             color="#CB4B6C" 
                                             cursor={'pointer'} 
-                                            onClick={() => handleRemoveUser(user.id)} // Make sure handleRemoveUser is defined
-                                            title={`Remove ${user.name}`} // Descriptive title for accessibility
-                                            aria-label={`Remove ${user.name}`} // Accessible label
+                                            onClick={() => handleRemoveUser(user.id)}
+                                            title={`Remove ${user.name}`}
+                                            aria-label={`Remove ${user.name}`}
                                         />
                                     </div>
                                 </section>

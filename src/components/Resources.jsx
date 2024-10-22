@@ -1,8 +1,12 @@
 import { Dropdown } from 'primereact/dropdown'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { BiSolidCommentAdd } from 'react-icons/bi'
 import { IoMdAddCircle } from 'react-icons/io'
 import { RxCross2 } from 'react-icons/rx'
+import AddComment from './AddComment'
+import { IoTriangle } from "react-icons/io5"
+
+import { OverlayPanel } from 'primereact/overlaypanel'
 
 const users = [
     { id: 9, name: "John Berg", theme: '#3DCE1E', availability: null },
@@ -22,6 +26,14 @@ const clerks = [
 
 const Resources = () => {
     const [selectedClerk, setSelectedClerk] = useState(null)
+    const [openComment, setOpenComment] = useState(null)
+    const op = useRef(null)
+
+    const handleToggleComment = (id) => {
+        console.log('cicked')
+        if (openComment === id) setOpenComment(null)
+        else setOpenComment(id)
+    }
 
   return (
     <>
@@ -35,7 +47,7 @@ const Resources = () => {
             <h2 className="font-Inter-Regular text-sm text-[#3E3E3E]"> Resources </h2>
             <h2 className="font-Inter-Regular text-sm text-[#3E3E3E]"> Task Division </h2>
         </div>
-        <section className="py-3 px-2 max-h-[17rem] 2xl:max-h-96 overflow-y-auto w-full flex flex-col gap-3 border-[#E2E2E2] border-x border-b rounded-b-md">
+        <section className="py-3 px-2 max-h-[17rem] 2xl:max-h-[28rem] overflow-y-auto w-full flex flex-col gap-3 border-[#E2E2E2] border-x border-b rounded-md">
             {users?.map((user) => (
                 <div key={user.id} className={`w-full flex justify-between ${user?.availability && 'bg-[#FEF9F6]'} `} >
                     <div className="flex gap-2">
@@ -56,8 +68,24 @@ const Resources = () => {
                             value={selectedClerk} onChange={(e) => setSelectedClerk(e.value)} options={clerks} optionLabel="label" 
                             placeholder="Select Clerk" className="w-32"
                         />
-                        <span className="w-8 h-8 hover:bg-[#D9E3EC] FlexCenter rounded-full transition ease-in-out duration-200 cursor-not-allowed">
-                            <BiSolidCommentAdd size={20} color="#00457C" cursor={"not-allowed"} />
+                        <span
+                            onClick={(e) => op.current.toggle(e)}
+                            className="relative w-8 h-8 hover:bg-[#D9E3EC] FlexCenter rounded-full transition ease-in-out duration-200 cursor-pointer"
+                        >
+                            <div>
+                                <BiSolidCommentAdd size={20} color="#00457C" />
+                                <OverlayPanel ref={op} className="bg-red-500">
+                                    <div 
+                                        className='relative'
+                                        onClick={(e) => e.stopPropagation()} 
+                                    >
+                                        <IoTriangle className="absolute -top-2 right-[6px]" size={20} color='#00457C' />
+                                        <div className='w-[25rem] bg-white shadow-lg p-4'>
+                                            <AddComment />
+                                        </div>
+                                    </div>
+                                </OverlayPanel>
+                            </div>
                         </span>
                         <RxCross2 size={20} color="#00457C" cursor={"not-allowed"} />
                         <input
@@ -67,13 +95,13 @@ const Resources = () => {
                     </div>
                 </div>
             ))}
+            <div className="w-full py-3 px-2 bg-[#F1F1F1] flex items-center justify-end border-t border-[#D5D5D5]">
+                <h3 className="font-Inter-Regular font-medium text-sm text-[#3E3E3E]">
+                    Total Tasks Remaining
+                    <span className="ml-2">0</span>
+                </h3>  
+            </div>
         </section>
-        <div className="w-full py-3 px-2 bg-[#F1F1F1] flex items-center justify-end">
-            <h3 className="font-Inter-Regular font-medium text-sm text-[#3E3E3E]">
-                Total Tasks Remaining
-                <span className="ml-2">0</span>
-            </h3>  
-        </div>
     </>
   )
 }
