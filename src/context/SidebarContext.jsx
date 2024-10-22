@@ -10,16 +10,25 @@ export const SidebarProvider = ({ children }) => {
 
   const [openSidebar, setOpenSidebar] = useState(true)
   const [users, setUsers] = useState(generateUsers)
-  const [ selectedUsers, setSelectedUsers] = useState([])
+  const [selectedUsers, setSelectedUsers] = useState([])
 
   const updateSidebar = () => {
     setOpenSidebar(prevState => !prevState)
   }
 
-  const handleSelectUser = (selectedIds) => {
-    const matchedUsers = generateUsers.filter(user => selectedIds.includes(user.id));
-
-    setSelectedUsers(matchedUsers);
+  const handleSelectUser = (userId) => {
+    if (userId === "emptyArray") {
+      setSelectedUsers([])
+      return
+    } else {
+      setSelectedUsers((prevSelectedUsers) => {
+        if (prevSelectedUsers.includes(userId)) {
+          return prevSelectedUsers.filter((id) => id !== userId);
+        } else {
+          return [...prevSelectedUsers, userId]
+        }
+      })
+    }
   }
 
   return (

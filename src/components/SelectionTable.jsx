@@ -95,7 +95,16 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-export default function SelectionTable() {
+
+
+
+
+
+
+
+
+export default function SelectionTable ( {unchecked} ) {
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('name');
   const [selected, setSelected] = React.useState([]);
@@ -103,7 +112,9 @@ export default function SelectionTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchQuery, setSearchQuery] = React.useState(''); // State for search input
 
-  const { users, handleSelectUser } = useSidebar();
+  const { users, handleSelectUser, selectedUsers } = useSidebar();
+
+  console.log("selected users: ", selectedUsers)
 
   const rows = users;
 
@@ -119,27 +130,31 @@ export default function SelectionTable() {
   };
 
   const handleSelectAllClick = (event) => {
-    if (selected.length === 0) {
-      const newSelected = rows.map((n) => n.id);
-      setSelected(newSelected);
+    if (selectedUsers.length === 0) {
+      const allIds = rows.map((n) => parseInt(n.id));
+      allIds.forEach(id => handleSelectUser(id)); 
     } else {
-      setSelected([]);
+      handleSelectUser("emptyArray")
     }
   };
-
+  
+  
   const handleClick = (event, id) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
+    handleSelectUser(id)
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-    setSelected(newSelected);
+    // const selectedIndex = selected.indexOf(id);
+    // let newSelected = [];
+
+    // if (selectedIndex === -1) {
+    //   newSelected = newSelected.concat(selected, id);
+    // } else {
+    //   newSelected = newSelected.concat(
+    //     selected.slice(0, selectedIndex),
+    //     selected.slice(selectedIndex + 1)
+    //   );
+    // }
+    // setSelected(newSelected);
+
   };
 
   const handleChangePage = (event, newPage) => {
@@ -189,17 +204,14 @@ export default function SelectionTable() {
               {visibleRows.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={headCells.length + 1} align="center" sx={{ borderRight: '1px solid #E7E8EA', borderLeft: '1px solid #E7E8EA' }}>
-                    <div className="w-full h-full FlexCenter font-Inter-SemiBold text-base text-primary">
-                      <p>
-                        {' '}
-                        <i> No results found!</i>{' '}
-                      </p>
+                    <div className="w-full h-full FlexCenter font-Inter-SemiBold text-base text-primary italic">
+                      <p> No results found! </p>
                     </div>
                   </TableCell>
                 </TableRow>
               )}
               {visibleRows.map((row, index) => {
-                const isItemSelected = selected.includes(row.id);
+                const isItemSelected = selectedUsers.includes(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
                 return (
                   <TableRow
@@ -269,8 +281,7 @@ export default function SelectionTable() {
               onClick={() => setRowsPerPage(10)}
               className={`p-3 rounded-md ${rowsPerPage === 10 ? 'text-white bg-[#00457C]' : 'text-[#1C1C1C] bg-transparent'}  cursor-pointer`}
             >
-              {' '}
-              10{' '}
+              10
             </button>
             <button
               type="button"

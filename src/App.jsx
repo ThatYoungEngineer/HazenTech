@@ -3,6 +3,7 @@ import Dashboard from './pages/Dashboard'
 import TaskManagement from './components/TaskManagement'
 import CreateTask from './components/CreateTask'
 import AbsentResources from './components/AbsentResources'
+import 'animate.css'
 
 const App = () => {
   return (

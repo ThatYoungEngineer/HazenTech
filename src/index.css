@@ -71,6 +71,10 @@ input::-webkit-inner-spin-button {
 .MuiPaginationItem-root.Mui-selected {
   background-color: #00457C !important;
   color: white !important;
+  padding: 1.4rem .75rem !important;
+  border-radius: 6px !important;
+  font-family: Roboto-Regular;
+  font-size: 13px !important;
 }
 
 .MuiPaper-root {
@@ -255,3 +259,9 @@ input::-webkit-inner-spin-button {
 .Mui-selected  {
   background-color: transparent !important;;
 }
+
+/* .innerBorder {
+  -webkit-box-shadow:inset 0px 0px 0px 1px #00457C;
+  -moz-box-shadow:inset 0px 0px 0px 1px #00457C;
+  box-shadow:inset 0px 0px 0px 1px #00457C;
+} */
