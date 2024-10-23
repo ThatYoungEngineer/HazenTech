@@ -108,11 +108,11 @@ const AbsentResources = () => {
                     </section>
                     {selectedUsers?.length > 0 &&
                         <div className="mt-5 flex items-center gap-3">
-                            <button type="button" disabled className="font-Inter-Regular disabled:opacity-50 disabled:cursor-not-allowed text-sm rounded-md bg-[#00457C] flex items-center gap-2 py-2 px-3 text-white">
+                            <button type="button" disabled className="font-Inter-Regular disabled:opacity-50 disabled:cursor-not-allowed text-sm rounded-md bg-[#00457C] flex items-center gap-2 p-3 text-white">
                                 <FaSave />
                                 Save
                             </button>
-                            <button type="button" disabled className="font-Inter-Regular disabled:opacity-50 disabled:cursor-not-allowed text-sm rounded-md text-[#00457C] border border-[#00457C] flex items-center gap-1 py-2 px-3 bg-transparent">
+                            <button type="button" disabled className="font-Inter-Regular disabled:opacity-50 disabled:cursor-not-allowed text-sm rounded-md text-[#00457C] border border-[#00457C] flex items-center gap-1 p-3 bg-transparent">
                                 <RxCross2 />
                                 Cancel
                             </button>

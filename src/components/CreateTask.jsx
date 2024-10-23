@@ -1,12 +1,15 @@
 import { useState } from "react"
 
+import { GoTriangleDown } from "react-icons/go"
 import { FaSave } from "react-icons/fa"
 import { RxCross2 } from "react-icons/rx"
+import { LuCalendarDays } from "react-icons/lu"
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined'
 
 import { Dropdown } from 'primereact/dropdown'
 import { Calendar } from 'primereact/calendar'
 import { InputNumber } from 'primereact/inputnumber'
+
 import Resources from "./Resources"
 import BreadCrumb from "./BreadCrumb"
 
@@ -44,7 +47,10 @@ const CreateTask = () => {
     const [selectedProject, setSelectedProject] = useState(null)
     const [selectedPriority, setSelectedPriority] = useState(null)
     const [date, setDate] = useState(null)
-    const [number, setNumber] = useState(null)
+    const [number, setNumber] = useState("")
+    const [allocateResources, setAllocateResources] = useState(false)
+
+    console.log('number: ', number)
 
   return (
     <>
@@ -53,7 +59,7 @@ const CreateTask = () => {
                 <h2 className='font-Inter-Regular font-light text-xl text-primary'>Create Task</h2>
                 <BreadCrumb route = "Create Task" />
             </div>
-            <section className="mt-5 w-full min-h-fit bg-white header-shadow rounded-md p-5 flex">
+            <section className="mt-5 w-full lg:min-h-screen 2xl:min-h-fit h-fit 2xl:h-[40rem] bg-white header-shadow rounded-md p-5 flex">
                 <div className="flex-1 flex flex-col gap-3">
                     <div className="w-full flex items-center gap-2">
                         <label htmlFor="task_type" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
@@ -66,7 +72,9 @@ const CreateTask = () => {
                             optionLabel="label" 
                             highlightOnSelect={true}
                             placeholder="Select Task Type"
-                            className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm" 
+                            className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm " 
+                            dropdownIcon={ <GoTriangleDown color="#767676" size={20} className="rotate-0 transition ease-in-out duration-150" /> }
+                            collapseIcon ={<GoTriangleDown color="#767676" size={20} className="rotate-180 transition ease-in-out duration-150" /> }
                         />
                     </div>
                     <div className="w-full flex items-center gap-2">
@@ -76,6 +84,8 @@ const CreateTask = () => {
                         <Dropdown
                             value={selectedProject} onChange={(e) => setSelectedProject(e.value)} options={projects} optionLabel="label" 
                             placeholder="Select Project" className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm"
+                            dropdownIcon={ <GoTriangleDown color="#767676" size={20} className="rotate-0 transition ease-in-out duration-150" /> }
+                            collapseIcon ={<GoTriangleDown color="#767676" size={20} className="rotate-180 transition ease-in-out duration-150" /> }
                         />
                     </div>
                     <div className="w-full flex items-center gap-2">
@@ -85,25 +95,41 @@ const CreateTask = () => {
                         <Dropdown
                             value={selectedPriority} onChange={(e) => setSelectedPriority(e.value)} options={priorities} optionLabel="label" 
                             placeholder="Select Priority" className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm"
+                            dropdownIcon={ <GoTriangleDown color="#767676" size={20} className="rotate-0 transition ease-in-out duration-150" /> }
+                            collapseIcon ={<GoTriangleDown color="#767676" size={20} className="rotate-180 transition ease-in-out duration-150" /> }
                         />
                     </div>
                     <div className="w-full flex items-center gap-2">
                         <label htmlFor="due-date" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
                             Due Date
                         </label>
-                        <Calendar placeholder="Select Due Date" dateFormat="dd-mm-yy" value={date} onChange={(e) => setDate(e.value)} showIcon className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm cursor-pointer"  />
+                        <Calendar 
+                            placeholder="Select Due Date" dateFormat="dd-mm-yy" value={date} icon={<LuCalendarDays color="#767676" size={20} /> }
+                            onChange={(e) => setDate(e.value)} showIcon className="w-[70%] 2xl:w-[80%] font-Inter-Medium text-sm cursor-pointer"
+                        />
                     </div>
                     <div className="w-full flex items-center gap-2">
                         <label htmlFor="integer-only" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">
                             Number of Tasks
                         </label>
-                        <InputNumber placeholder="Number of tasks" inputId="integer-only" value={number} onValueChange={(e) => setNumber(e.value)} id="numberInput"/>
+                        <input 
+                            type="text" placeholder="Number of tasks" value={number} onChange={(e) => setNumber(e.target.value)} 
+                            className="w-40 p-2 border-[2px] border-[#E1E1E1] border-opacity-50 rounded-[3px] 
+                            text-2xl text-[#151529] font-Inter-Regular placeholder:text-sm placeholder:text-[#848484]
+                            focus:border-[#00457C] focus:border-opacity-100 outline-none
+                            transition ease-in-out duration-150"
+                        />
                     </div>
                     <div className="ml-[120px]">
-                        <span className="flex items-center gap-1 font-Inter-Regular text-sm text-[#00457C] cursor-not-allowed">
+                        <button
+                            type="button"
+                            // disabled = { selectedTask == null || selectedProject == null || selectedPriority == null || date == null || number == null }
+                            onClick={()=>setAllocateResources(true)}
+                            className="flex items-center gap-1 font-Inter-Regular text-sm text-[#00457C] disabled:cursor-not-allowed cursor-pointer "
+                        >
                             <GroupAddOutlinedIcon className="h-5 w-5"/>
                             <h3> Allocate Resources </h3>
-                        </span>
+                        </button>
                         <div className="mt-5 flex items-center gap-3">
                             <button type="button" disabled className=" disabled:opacity-40 font-Inter-Regular text-sm rounded-md bg-[#00457C] flex items-center gap-2 py-2 px-3 text-white cursor-not-allowed">
                                 <FaSave />
@@ -117,7 +143,10 @@ const CreateTask = () => {
                     </div>
                 </div>
                 <div className="flex-1">
-                    <Resources />
+                    <Resources 
+                        allocateResources = { allocateResources } 
+                        tasks = { number }
+                    />
                 </div>
             </section>
         </section>

@@ -63,7 +63,7 @@ input::-webkit-inner-spin-button {
 .MuiPaginationItem-root.Mui-selected {
   background-color: #00457C !important;
   color: white !important;
-  padding: 1.4rem .75rem !important;
+  padding: 1.3rem .75rem !important;
   border-radius: 6px !important;
   font-family: Roboto-Regular;
   font-size: 13px !important;
@@ -95,12 +95,9 @@ input::-webkit-inner-spin-button {
     padding: 7px;
     border-radius: 3px;
     border: 2px solid rgba(225, 225, 225, .5);
-    font-family: Inter-Regular;
-    font-size: 14px;
-    color: rgba(21, 21, 41, 1);
     transition: all ease-in-out 150ms !important;
   }
-  
+
   .p-dropdown.p-inputwrapper-focus,
   .p-calendar.p-focus,
   .p-inputnumber.p-inputwrapper-focus {
@@ -121,7 +118,7 @@ input::-webkit-inner-spin-button {
     font-family: Inter-Regular;
     background-color: white;
     box-shadow: 0 4px 25px 0 rgba(123, 123, 123, 0.25);
-    border: 1px solid rgba(225, 225, 225, 1);
+    border: 1px solid #e1e1e1;
   }
     
   .p-dropdown-item {
@@ -216,8 +213,14 @@ input::-webkit-inner-spin-button {
     background-color: rgba(0, 140, 255, 0.20);
   }
 
+  .p-inputnumber-input {
+    max-width: 6.5rem !important;
+    font-size: 1.5rem !important;
+  }
+
   .p-inputtext {
-    cursor: pointer !important;
+    cursor: pointer;
+    font-size: 14px;
     background-color: transparent;
     outline: none;
     border: none;
@@ -227,26 +230,32 @@ input::-webkit-inner-spin-button {
     }
   }
 
+  #inputNumber {
+    cursor: text !important;
+  }
+
   .p-datepicker > td .p-datepicker-today {
     background-color: rgba(0, 140, 255, 0.030);
     border: 1px solid rgba(0, 140, 255, 0.25);
     max-width: 1.5rem !important;
   }
 
-  .p-inputnumber {
-    max-width: 8rem;
-    font-size: 24px;
-  }
-
   .p-inputswitch.p-highlight .p-inputswitch-slider {  
     background-color: #00457C !important;
     width: 100% !important;
     height: 100% !important;
-  }	
+  }
+  
+  .p-dropdown .p-dropdown-trigger,
+  .p-datepicker-trigger  {
+    width: fit-content;
+  }
 
-#numberInput {
-  cursor: text !important;
-}
+  .p-overlaypanel {
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
 
 .css-1o768wo-MuiTableRow-root.Mui-selected {
   background-color: inherit !important;
