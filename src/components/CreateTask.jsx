@@ -54,12 +54,12 @@ const CreateTask = () => {
 
   return (
     <>
-        <section className='p-5 h-full w-full'>
+        <section className='p-5 w-full'>
             <div className='w-full flex items-center justify-between'>
                 <h2 className='font-Inter-Regular font-light text-xl text-primary'>Create Task</h2>
                 <BreadCrumb route = "Create Task" />
             </div>
-            <section className="mt-5 w-full lg:min-h-screen 2xl:min-h-fit h-fit 2xl:h-[40rem] bg-white header-shadow rounded-md p-5 flex">
+            <section className="mt-5 mb-10 w-full lg:min-h-screen 2xl:min-h-fit h-fit 2xl:h-[40rem] bg-white header-shadow rounded-md p-5 flex">
                 <div className="flex-1 flex flex-col gap-3">
                     <div className="w-full flex items-center gap-2">
                         <label htmlFor="task_type" className="w-28 text-right font-Inter-Regular text-sm text-[#3E3E3E">

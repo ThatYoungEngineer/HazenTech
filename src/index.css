@@ -59,6 +59,14 @@ input::-webkit-inner-spin-button {
 .sidebar-list > li {
   cursor: pointer;
 }
+
+#mainSection {
+  height: calc( 100vh - 3.9rem );
+  overflow-y: auto;
+}
+#mainSection::-webkit-scrollbar {
+  display: none !important;
+}
   
 .MuiPaginationItem-root.Mui-selected {
   background-color: #00457C !important;
@@ -78,12 +86,23 @@ input::-webkit-inner-spin-button {
 }
 
 .p-placeholder,
-.p-inputtext::placeholder,
-.p-inputnumber::placeholder {
+input::placeholder {
   font-family: Inter-Regular;
   color: #848484;
   font-size: 14px;
 }
+
+  /* dropdown menu items */
+  .p-dropdown-item {
+    padding: 7px;
+    font-family: Inter-Regular;
+    font-size: 14px;
+    color: rgba(62, 62, 62, 1);
+    &:hover,
+    &.p-highlight {
+      background-color: rgba(0, 140, 255, 0.030);
+    }
+  }
 
 .p-dropdown-items-wrapper::-webkit-scrollbar {
   display: none;
@@ -106,6 +125,11 @@ input::-webkit-inner-spin-button {
     box-shadow: none !important;
   }
 
+  .p-inputtext:not(.p-placeholder) {
+    font-family: Inter-Medium;
+    color: #151529;
+  }
+
   .p-calendar:not(.p-calendar-disabled).p-focus > .p-inputtext,
   .p-inputtext:enabled:focus {
     box-shadow: none !important;
@@ -121,17 +145,6 @@ input::-webkit-inner-spin-button {
     border: 1px solid #e1e1e1;
   }
     
-  .p-dropdown-item {
-    padding: 7px;
-    font-family: Inter-Regular;
-    font-size: 14px;
-    color: rgba(62, 62, 62, 1);
-    &:hover,
-    &.p-highlight {
-      background-color: rgba(0, 140, 255, 0.030);
-    }
-  }
-
   .p-datepicker-group-container > .p-datepicker-group > .p-datepicker-calendar-container > .p-datepicker-calendar > tbody > tr > td > .p-highlight {
     color: #F5F8FA;
     border: 1px solid transparent;
@@ -260,3 +273,4 @@ input::-webkit-inner-spin-button {
 .css-1o768wo-MuiTableRow-root.Mui-selected {
   background-color: inherit !important;
 }
+

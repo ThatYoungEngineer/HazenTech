@@ -262,8 +262,8 @@ export default function SelectionTable ( {unchecked} ) {
             </TableBody>
           </Table>
         </TableContainer>
-        <section className="w-full mt-5 2xl:mt-0 flex items-center justify-between">
-          <section className="flex items-center gap-2 font-Roboto-Regular text-sm">
+        <section className="w-full mt-5 2xl:mt-0 flex items-center xl:justify-between justify-end flex-wrap">
+          <section className="flex items-center gap-2 font-Roboto-Regular text-sm flex-shrink-0">
             <button
               type="button"
               onClick={() => setRowsPerPage(5)}
@@ -289,8 +289,8 @@ export default function SelectionTable ( {unchecked} ) {
               All
             </button>
           </section>
-          <section>
-            <Pagination count={Math.ceil(rows.length / rowsPerPage)} page={page} onChange={handleChangePage} shape="rounded" />
+          <section className='ml-auto'>
+            <Pagination sx={{minWidth: 'fit-content'}} count={Math.ceil(rows.length / rowsPerPage)} page={page} onChange={handleChangePage} shape="rounded" />
           </section>
         </section>
       </Paper>

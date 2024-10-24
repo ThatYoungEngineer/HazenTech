@@ -62,7 +62,7 @@ const AbsentResources = () => {
                     </span>
                 </h2>
                 <main className="w-full h-full flex flex-col justify-between">
-                    <section className="flex gap-3 flex-col w-full h-full max-h-[75vh] 2xl:max-h-[60vh] overflow-y-auto overflow-x-hidden">
+                    <section className="flex gap-3 flex-col w-full h-full max-h-[32rem] 2xl:max-h-[39rem] overflow-y-auto overflow-x-hidden">
                         {selectedUsers && selectedUsers.length > 0
                             ? users
                                 ?.filter(user => selectedUsers.includes(user.id))
