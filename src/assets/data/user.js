@@ -4,6 +4,7 @@ function createData(id, name, email) {
       id,
       name,
       email,
+      partiallyAvailable: Math.random() < 0.5
     };
   }
   

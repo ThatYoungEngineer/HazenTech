@@ -124,7 +124,7 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{  height: {lg: '22.2rem', xl: '30.2rem'} , overflowY: 'auto', border: 'none' }}>
+        <TableContainer sx={{  height: '20.3rem' , overflowY: 'auto', border: 'none' }}>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               order={order}

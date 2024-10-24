@@ -19,6 +19,7 @@ export default {
       },
       colors: {
         'primary': '#05173B',
+        'secondary': '#00457C',
       },
     },
   },

@@ -92,6 +92,10 @@ input::placeholder {
   font-size: 14px;
 }
 
+.custom-dropdown-panel .p-dropdown-item {
+  color: black !important;
+}
+
   /* dropdown menu items */
   .p-dropdown-item {
     padding: 7px;

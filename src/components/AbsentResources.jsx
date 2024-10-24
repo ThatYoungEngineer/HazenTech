@@ -1,43 +1,37 @@
+import { useState } from "react"
+
 import BreadCrumb from "./BreadCrumb"
 import SelectionTable from "./SelectionTable"
+import { useSidebar } from '../context/sidebarContext'
+import OverlaySection from "./OverlaySection"
 
 import { FaSave, FaUserCheck } from "react-icons/fa"
 import { HiTrash } from "react-icons/hi"
+import { RxCross2 } from "react-icons/rx"
+import { IoTriangle } from "react-icons/io5"
 
 import { InputSwitch } from "primereact/inputswitch"
-import { useEffect, useState } from "react"
-import { RxCross2 } from "react-icons/rx"
 
-import { useSidebar } from '../context/sidebarContext'
 
 const AbsentResources = () => {
-    const { users, selectedUsers, handleSelectUser } = useSidebar();
+    const { users, selectedUsers, handleSelectUser } = useSidebar()
+    const [showAddComment, setShowAddComment] = useState(null)
 
     const handleRemoveUser = (userId) => {
         handleSelectUser(userId)
     }
-      
-    const initialCheckedState = users.reduce((acc, user) => {
-        acc[user.id] = false
-        return acc
-    }, {})
 
-  const [checkedStates, setCheckedStates] = useState(initialCheckedState)
+    const handleCommentClick = (userId) => {
+        setShowAddComment(userId)
+    }
 
-  const handleToggle = (userId) => {
-    setCheckedStates((prev) => ({
-      ...prev,
-      [userId]: !prev[userId]
-    }));
-  }
+  const date = new Date()
 
-    const date = new Date()
-
-    const formattedDate = [ 
-        String(date.getDate()).padStart(2, '0'),        
-        String(date.getMonth() + 1).padStart(2, '0'),
-        date.getFullYear()                              
-    ].join('-')
+  const formattedDate = [ 
+    String(date.getDate()).padStart(2, '0'),        
+    String(date.getMonth() + 1).padStart(2, '0'),
+    date.getFullYear()                              
+  ].join('-')
 
   return (
     <section className='p-5 w-full'>
@@ -68,7 +62,7 @@ const AbsentResources = () => {
                                 ?.filter(user => selectedUsers.includes(user.id))
                                 .sort((a, b) => selectedUsers.indexOf(a.id) - selectedUsers.indexOf(b.id)) 
                                 .map((user) => ( 
-                                <section key={user.id} className="py-2 px-3 w-[99%] flex items-center justify-between border border-[#00457C] rounded-md animate__animated animate__bounceInLeft animate__faster">
+                                <section key={user.id} className="relative z-10 py-2 px-3 w-[99%] flex items-center justify-between border border-[#00457C] rounded-md animate__animated animate__bounceInLeft animate__faster">
                                     <div className="flex gap-2 items-center">
                                         <img 
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34VNI2RCmMP7q-xSlNft7ya1cNF_HxOZ-xA&s"
@@ -84,9 +78,11 @@ const AbsentResources = () => {
                                         <h3 className="font-Inter-Regular text-sm text-black">Partially Available</h3>
                                         <div className="card flex justify-center">
                                             <InputSwitch 
-                                                checked={checkedStates[user.id]} 
-                                                onChange={() => handleToggle(user.id)}
+                                                // checked={checkedStates[user.id]} 
+                                                checked = { user.partiallyAvailable }
+                                                // onChange={() => !user.partiallyAvailable}
                                                 aria-label={`Toggle availability for ${user.name}`}
+                                                onClick={()=>handleCommentClick(user.id)}
                                             />
                                         </div>
                                         <HiTrash
@@ -98,6 +94,18 @@ const AbsentResources = () => {
                                             aria-label={`Remove ${user.name}`}
                                         />
                                     </div>
+                                    {showAddComment === user.id &&
+                                        <div 
+                                            className='absolute top-[55px] right-4' style={{zIndex: '10002222'}}
+                                        >
+                                            <IoTriangle className="translate-x-[32rem]" size={20} color='#00457C' />
+                                            <div className='w-[30vw] relative z-50'>
+                                                <OverlaySection
+                                                    section = "Partial Availability"
+                                                />
+                                            </div>
+                                        </div>
+                                    }
                                 </section>
                             )) : (
                                 <div className="w-full h-full flex items-center justify-center">

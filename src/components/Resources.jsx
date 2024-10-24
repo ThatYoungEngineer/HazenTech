@@ -9,25 +9,11 @@ import { GoTriangleDown } from 'react-icons/go'
 import { Dropdown } from 'primereact/dropdown'
 import { OverlayPanel } from 'primereact/overlaypanel'
 
-import AddComment from './AddComment'
+import { useSidebar } from '../context/sidebarContext'
+import AddComment from './OverlaySection'
 
 import clarify from '../assets/images/clarify.png'
-
-
-const users = [
-    { id: 9, name: "John Berg", theme: '#3DCE1E', availability: null },
-    { id: 2, name: "Lara Croft", theme: '#1876D2', availability: null },
-    { id: 3, name: "Heisenberg", theme: '#3DCE1E', availability: null },
-    { id: 4, name: "Mr. White", theme: '#3DCE1E', availability: '07:00 hours' },
-    { id: 5, name: "John Wick", theme: '#E9C50C', availability: null },
-    { id: 6, name: "Ali Ahmed", theme: '#3DCE1E', availability: null },
-    { id: 8, name: "Lars Alex", theme: '#1876D2', availability: null },
-    { id: 89, name: "Lars Alex", theme: '#1876D2', availability: null },
-    { id: 11, name: "Lars Alex", theme: '#1876D2', availability: null },
-    { id: 12, name: "Mary Alex", theme: '#3DCE1E', availability: null },
-    { id: 14, name: "Lars Alex", theme: '#1876D2', availability: null },
-    { id: 50, name: "Lars Alex", theme: '#1876D2', availability: null },
-]
+import OverlaySection from './OverlaySection'
 
 const clerks = [
     { id: 1, label: "Clerk 01" },
@@ -36,6 +22,7 @@ const clerks = [
 ]
 
 const Resources = ( { allocateResources, tasks } ) => {
+    const { users } = useSidebar()
     const [selectedClerk, setSelectedClerk] = useState(null)
     const [scroll, setScroll] = useState(true)
     const op = useRef(null)
@@ -104,18 +91,19 @@ const Resources = ( { allocateResources, tasks } ) => {
                                     />
                                     <span
                                         onClick={handleCommentClick}
+                                        id='commentSectionClick'
                                         className="relative w-8 h-8 hover:bg-[#D9E3EC] FlexCenter rounded-full transition ease-in-out duration-200 cursor-pointer"
                                     >
                                         <div>
                                             <BiSolidCommentAdd size={20} color="#00457C" />
-                                            <OverlayPanel ref={op} onHide={handleOverlayClose} closeOnEscape dismissable={false} align={'bottom'} >
+                                            <OverlayPanel ref={op} onHide={handleOverlayClose} closeOnEscape dismissable={false} >
                                                 <div 
                                                     className='relative'
                                                     onClick={(e) => e.stopPropagation()} 
                                                 >
                                                     <IoTriangle className="absolute mb-5 -top-2 right-[-12px]" size={20} color='#00457C' />
                                                     <div className='w-[30vw] pt-[10px] relative translate-x-16'>
-                                                        <AddComment handleCommentClick = {handleCommentClick} />
+                                                        <OverlaySection section = "Comment" handleCommentClick = {handleCommentClick} />
                                                     </div>
                                                 </div>
                                             </OverlayPanel>
