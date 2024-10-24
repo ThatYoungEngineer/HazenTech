@@ -215,7 +215,7 @@ export default function SelectionTable ( {unchecked} ) {
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
-                    className={index % 2 !== 0 && 'bg-[#F5F8FA]'}
+                    className={`${index  % 2 !== 0  && 'bg-[#F5F8FA]' }`}
                     sx={{ cursor: 'pointer', border: '1px solid #E7E8EA', '&.Mui-selected': { 
                       backgroundColor: index % 2 !== 0 ? '#F5F8FA' : '#FFF'
                     }}}

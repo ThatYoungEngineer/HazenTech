@@ -136,7 +136,7 @@ export default function EnhancedTable() {
                 <TableRow
                   hover
                   key={row.id}
-                  className={index % 2 !== 0 && 'bg-[#F5F8FA]'}
+                  className={`${index  % 2 !== 0  && 'bg-[#F5F8FA]' }`}
                   sx={{ border: '1px solid #E7E8EA' }}
                 >
                   <TableCell component="th" scope="row" padding="normal"

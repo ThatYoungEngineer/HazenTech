@@ -4,7 +4,7 @@ import { IoMdAdd } from "react-icons/io"
 
 const TaskManagement = () => {
   return (
-    <section className='p-5 h-full w-full'>
+    <section className='p-5 w-full'>
       <div className='w-full flex items-center justify-between'>
         <h2 className='font-Inter-Regular font-light text-xl text-primary'>Task Management</h2>
         <Link to='/create-task'>
