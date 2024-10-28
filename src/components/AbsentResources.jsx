@@ -12,6 +12,8 @@ import { IoTriangle } from "react-icons/io5"
 
 import { InputSwitch } from "primereact/inputswitch"
 
+import PopperPopupState from './Popper'
+
 
 const AbsentResources = () => {
     const { users, selectedUsers, handleSelectUser } = useSidebar()
@@ -55,14 +57,14 @@ const AbsentResources = () => {
                         Absent/Partial Resources <span>({selectedUsers?.length})</span> 
                     </span>
                 </h2>
-                <main className="w-full h-full flex flex-col justify-between">
-                    <section className="flex gap-3 flex-col w-full h-full max-h-[32rem] 2xl:max-h-[39rem] overflow-y-auto overflow-x-hidden">
+                <main className=" w-full h-full flex flex-col justify-between">
+                    <section className=" flex gap-3 flex-col w-full h-full max-h-[32rem] 2xl:max-h-[39rem] overflow-y-auto overflow-x-hidden relative z-10">
                         {selectedUsers && selectedUsers.length > 0
                             ? users
                                 ?.filter(user => selectedUsers.includes(user.id))
                                 .sort((a, b) => selectedUsers.indexOf(a.id) - selectedUsers.indexOf(b.id)) 
                                 .map((user) => ( 
-                                <section key={user.id} className="relative z-10 py-2 px-3 w-[99%] flex items-center justify-between border border-[#00457C] rounded-md animate__animated animate__bounceInLeft animate__faster">
+                                <section key={user.id} className="relative -z-20 py-2 px-3 w-[99%] flex items-center justify-between border border-[#00457C] rounded-md animate__animated animate__bounceInLeft animate__faster">
                                     <div className="flex gap-2 items-center">
                                         <img 
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34VNI2RCmMP7q-xSlNft7ya1cNF_HxOZ-xA&s"
@@ -74,16 +76,18 @@ const AbsentResources = () => {
                                             <h3>{user.email}</h3>
                                         </span>
                                     </div>
-                                    <div className="flex items-center gap-2">
+                                    <div className="relative z-30 flex items-center gap-2">
                                         <h3 className="font-Inter-Regular text-sm text-black">Partially Available</h3>
-                                        <div className="card flex justify-center">
+                                        <div className="relative z-40">
                                             <InputSwitch 
-                                                // checked={checkedStates[user.id]} 
                                                 checked = { user.partiallyAvailable }
-                                                // onChange={() => !user.partiallyAvailable}
                                                 aria-label={`Toggle availability for ${user.name}`}
                                                 onClick={()=>handleCommentClick(user.id)}
                                             />
+                                            <div className={` ${showAddComment == user.id ? 'block': 'hidden'} w-[30vw] absolute top-11 -right-8`} style={{zIndex: '100000'}} >
+                                                <IoTriangle className="translate-x-[21.5rem] 2xl:translate-x-[32rem]" size={20} color='red' />
+                                                <OverlaySection section = "Partial Availability" />
+                                            </div>
                                         </div>
                                         <HiTrash
                                             size={25} 
@@ -94,18 +98,6 @@ const AbsentResources = () => {
                                             aria-label={`Remove ${user.name}`}
                                         />
                                     </div>
-                                    {showAddComment === user.id &&
-                                        <div 
-                                            className='absolute top-[55px] right-4' style={{zIndex: '10002222'}}
-                                        >
-                                            <IoTriangle className="translate-x-[32rem]" size={20} color='#00457C' />
-                                            <div className='w-[30vw] relative z-50'>
-                                                <OverlaySection
-                                                    section = "Partial Availability"
-                                                />
-                                            </div>
-                                        </div>
-                                    }
                                 </section>
                             )) : (
                                 <div className="w-full h-full flex items-center justify-center">

@@ -139,6 +139,11 @@ input::placeholder {
     box-shadow: none !important;
   }
   
+  .timePanel.p-dropdown-panel {
+    min-width: fit-content !important;
+    width: 5rem !important;
+  }
+
   .p-dropdown-panel,
   .p-datepicker-group-container,
   .p-monthpicker,
@@ -278,3 +283,6 @@ input::placeholder {
   background-color: inherit !important;
 }
 
+.extreme-z-index {
+  z-index: 100009;
+}

@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 
+import { useSidebar } from '../context/sidebarContext'
+import OverlaySection from './OverlaySection'
+import clarify from '../assets/images/clarify.png'
+
 import { BiSolidCommentAdd } from 'react-icons/bi'
 import { IoMdAddCircle } from 'react-icons/io'
 import { RxCross2 } from 'react-icons/rx'
@@ -9,11 +13,6 @@ import { GoTriangleDown } from 'react-icons/go'
 import { Dropdown } from 'primereact/dropdown'
 import { OverlayPanel } from 'primereact/overlaypanel'
 
-import { useSidebar } from '../context/sidebarContext'
-import AddComment from './OverlaySection'
-
-import clarify from '../assets/images/clarify.png'
-import OverlaySection from './OverlaySection'
 
 const clerks = [
     { id: 1, label: "Clerk 01" },
@@ -48,7 +47,7 @@ const Resources = ( { allocateResources, tasks } ) => {
     }
 
     const handleOverlayClose = () => {
-        setScroll(true); // Restore scroll when overlay is closed
+        setScroll(true) 
     }
 
   return (

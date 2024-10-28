@@ -4,6 +4,7 @@ import TaskManagement from './components/TaskManagement'
 import CreateTask from './components/CreateTask'
 import AbsentResources from './components/AbsentResources'
 import 'animate.css'
+import BasicDemo from './pages/BasicDemo'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route path='/task-management' element={<TaskManagement />} />
             <Route path='/create-task' element={<CreateTask/>} />
           </Route>
+          <Route path='/demo' element={<BasicDemo />} />
         </Routes>
       </BrowserRouter>
     </>

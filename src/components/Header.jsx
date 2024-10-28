@@ -1,21 +1,33 @@
 import Logo from '../assets/images/logo.png'
 import User from '../assets/images/user.png'
+
 import { RxHamburgerMenu } from "react-icons/rx"
 import { IoMdNotificationsOutline } from "react-icons/io"
 import { MdKeyboardArrowDown } from "react-icons/md"
+import { MdClose } from "react-icons/md"
+
 
 import { useSidebar } from "../context/sidebarContext"
 import { Link } from 'react-router-dom'
 
 const Header = () => {
-  const { updateSidebar } = useSidebar()
+  const { openSidebar, updateSidebar } = useSidebar()
   return (
     <section className='w-screen py-4 bg-white header-shadow flex items-center justify-between'>
       <section className='w-64 2xl:w-72 max-w-72 h-full pl-4 flex items-center justify-between'>
         <Link to='/'>
           <img src={Logo} alt="Hazen Tech" className='cursor-pointer' />
         </Link>
-        <RxHamburgerMenu size={30} color='#AAAAAA' className='cursor-pointer' onClick={updateSidebar} />
+        {openSidebar ? (
+          <MdClose size={30} color='#AAAAAA' onClick={updateSidebar}
+            className={`cursor-pointer animate__animated animate__rotateIn animate__faster`}
+          />
+        ) : (
+          <RxHamburgerMenu 
+            size={30} color='#AAAAAA' onClick={updateSidebar}
+            className={`cursor-pointer animate__animated animate__rotateIn animate__faster`} 
+          />
+        )}
       </section>
       <section className='w-72 max-w-72 h-full pr-4 flex items-center justify-end gap-5'>
         <span className='relative cursor-not-allowed'>
