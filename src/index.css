@@ -138,10 +138,13 @@ input::placeholder {
   .p-inputtext:enabled:focus {
     box-shadow: none !important;
   }
-  
+
   .timePanel.p-dropdown-panel {
-    min-width: fit-content !important;
+    /* min-width: 5rem !important; */
     width: 5rem !important;
+    max-width: 5rem !important;
+    overflow: hidden;
+    background-color: greenyellow !important;
   }
 
   .p-dropdown-panel,

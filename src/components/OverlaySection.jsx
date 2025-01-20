@@ -26,7 +26,7 @@ const OverlaySection = ({ section, handleCommentClick }) => {
     ]
 
     return (
-    <section className='relative w-full rounded-xl bg-white z-50' style={{ boxShadow: '0 .5rem 1rem 0 rgba(0, 0, 0, .25)'}} >
+    <section className='w-full rounded-xl bg-white' style={{ boxShadow: '0 .5rem 1rem 0 rgba(0, 0, 0, .25)'}} >
         <span className='w-full flex items-center justify-between border-b border-[#E7E8EA] p-3'>
             <h3 className='font-Inter-Medium text-xl text-[#535353]'>
                 {section == "Comment" && "Add Comment" }
@@ -34,7 +34,7 @@ const OverlaySection = ({ section, handleCommentClick }) => {
             </h3>
             <IoMdClose color='#D9D9D9' size={25} onClick={handleCommentClick} cursor={'pointer'} />
         </span>
-        <section className="p-5">
+        <section className="relative p-5">
             {section == "Partial Availability" &&
                 <h2 className="font-Inter-Regular text-base text-[#06152B]">Availability in hours </h2>
             }
@@ -42,16 +42,15 @@ const OverlaySection = ({ section, handleCommentClick }) => {
                 <textarea rows={3} className="w-full outline-none resize-none placeholder:font-Inter-Regular text-sm text-[#848484] p-2 border border-[#D5D5D5] focus:border-primary rounded-md" placeholder="Write Comment Here" />
             }
             {section == "Partial Availability" &&
-                <div className="relative timePanel">
+                <div className="relative">
                     <Dropdown 
                         value={selectedTime}
                         onChange={(e) => setSelectedTime(e.value)}
                         options={time} optionLabel="duration" 
-                        placeholder="Select Time" className="w-full md:w-14rem" 
+                        placeholder="Select Time" className="w-full md:w-14rem overflow-hidden rounded-md" 
                         scrollHeight = "22rem"
-                        panelClassName="timePanel"
                     />
-                    <div className="bg-secondary p-[9px] rounded-tr-sm rounded-br-sm absolute right-0 top-0">
+                    <div className="bg-secondary h-[38px] w-[38px] rounded-tr-md rounded-br-md absolute right-0 top-0 FlexCenter border-none outline-none">
                         <LuClock4 color="white" size={20} />
                     </div>
                 </div>
